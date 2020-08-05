@@ -1,0 +1,5 @@
+Wavelength	775
+Grating Number	3
+#Spectra	16
+#Repetitions	25
+#BG-Spectra	300
