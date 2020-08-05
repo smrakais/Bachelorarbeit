@@ -139,16 +139,30 @@ minimum_value=np.amin(minimized_array)          # minimum_value of array
 index=np.where(minimized_array == minimum_value)# index of the minimum
 #print(index[0][0])                              # only index 
 index=index[0][0]
-
 print('You selected the wavelength:', wl[index],'nm.', 'The wavelength you wanted was: ', wavelenght,'nm.')
+
+
+#careful fails at randwerte --> out of bounds
+shift = 20
+lower = index - shift
+upper = index + shift + 1       #because of upper bound in mean_area_rho
+
+mean_area_rho = np.mean(rho[lower:upper,:],axis=0)
+print(np.shape(rho[lower:upper,:]))
 
 #plot
 plt.clf()
-plt.plot(theta_new,rho[index,:],'b-')
+plt.grid()
+plt.minorticks_on()
+
+#plt.plot(theta_new,rho[index,:],'b-')       # without mean 
+plt.plot(theta_new,mean_area_rho,'r-')      # with mean
+
+plt.xlim(theta_new[0], theta_new[-1])
 plt.xlabel(r'$\theta / \mathrm{°}$')
 plt.ylabel(r'$\rho$')
-plt.title('Titel')
+plt.title('Messung bei einer Wellelänge von %i nm' % wavelenght)
 
 #save
-plt.savefig('build/specific_wavelength_%i.png' % wavelenght)
+plt.savefig('build/specific_wavelength_%i_nm.png' % wavelenght)
 #***************************************************************************************************************************
