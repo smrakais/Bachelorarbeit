@@ -82,15 +82,16 @@ mittelwert_matrix_neg=np.mean(dataB_neg,axis=0)
 mittelwert_matrix_new = mittelwert_matrix[:,15:244]
 mittelwert_matrix_new_pos = mittelwert_matrix_pos[:,15:244]
 mittelwert_matrix_new_neg = mittelwert_matrix_neg[:,15:244]
-#print(mittelwert_matrix_new.shape)
+#print(mittelwert_matrix_new.shape)  # (1024,229)
 #**************************
 
 #Wavelength
-wl=np.genfromtxt('775nm_grating3_wellenlängenbereich.txt',usecols=(0)) #only takes the first column
+wl=np.genfromtxt('775nm_grating3_wellenlängenbereich.txt',usecols=(0)) #only takes the first column (spalte)
 #Angle
 theta=np.linspace(-23.578,23.578,256)
-theta_new=np.linspace(-23.578,23.578,mittelwert_matrix_new.shape[1])
+theta_new=np.linspace(-23.578,23.578,mittelwert_matrix_new.shape[1]) # because of the greatness of the sensor field
 
+#***************************************************************************************************************************
 
 #Colormap plot
 plt.pcolormesh(theta_new,wl,mittelwert_matrix_new,cmap='hot') # make the axes correct x,y,matrix
@@ -104,9 +105,11 @@ cbar.set_label('Intensity')
 #save figure and show figure
 #plt.show()
 plt.savefig('build/photolumineszenz.png')
-cbar.remove()                       #because of other plot
 
-#Intensitätsunterschied berechnen
+
+#***************************************************************************************************************************
+#Intensitätsunterschied rho berechnen 
+plt.clf()                  # very useful to prevent plots to interact with each other. alternative: object oriented plotting.
 rho= (mittelwert_matrix_new_pos - mittelwert_matrix_new_neg) / (mittelwert_matrix_new_pos + mittelwert_matrix_new_neg)
 plt.pcolormesh(theta_new,wl,rho,cmap='bwr')
 plt.clim(-0.15,0.15)        #bar limit
@@ -114,7 +117,6 @@ plt.xlabel(r'$\theta / \mathrm{°}$')
 plt.ylabel(r'$\lambda / \mathrm{nm}$')
 plt.title('relative Änderung der Intensität')
 plt.gca().invert_yaxis()
-plt.gca().invert_yaxis()                #because of other plot
 cbar = plt.colorbar()
 cbar.set_label('relative Intensity')
 #print(np.max(rho))
@@ -123,5 +125,30 @@ cbar.set_label('relative Intensity')
 #save figure and show figure
 #plt.show()
 plt.savefig('build/rel_aenderung.png')
+#***************************************************************************************************************************
+# program to select a certain wavelength and to plot the relative intensity againt the angle
 
-# c = np.true_divide(a, b, out=np.zeros_like(a), where=b!=0)
+wavelenght = 740
+
+minimized_array = abs(wl-wavelenght)            # minimal array
+#print(minimized_array)
+
+minimum_value=np.amin(minimized_array)          # minimum_value of array
+#print(minimum_value)
+
+index=np.where(minimized_array == minimum_value)# index of the minimum
+#print(index[0][0])                              # only index 
+index=index[0][0]
+
+print('You selected the wavelength:', wl[index],'nm.', 'The wavelength you wanted was: ', wavelenght,'nm.')
+
+#plot
+plt.clf()
+plt.plot(theta_new,rho[index,:],'b-')
+plt.xlabel(r'$\theta / \mathrm{°}$')
+plt.ylabel(r'$\rho$')
+plt.title('Titel')
+
+#save
+plt.savefig('build/specific_wavelength_%i.png' % wavelenght)
+#***************************************************************************************************************************
