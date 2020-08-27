@@ -5,14 +5,13 @@ import matplotlib.pyplot as plt
 #import time
 
 
-
-#TODO sensorgröße jeweils anpassen funktnion?
-
 #daten laden
 data = np.load('read_data.npz')
 mm = data['mm']
 mm_pos = data['mm_pos']
 mm_neg = data['mm_neg']
+
+#TODO sensorgröße jeweils anpassen funktnion?
 
 #korrektur sensorgröße
 mm = mm[:,15:244]
@@ -85,12 +84,12 @@ lower = index - shift
 upper = index + shift + 1       #because of upper bound in mean_area_rho, see next line!
 
 mean_area_rho = np.mean(rho[lower:upper,:],axis=0) #axis=0 is command for mean. otherwise it would give me only one value instead of a list.
-#check
-print(np.shape(rho[lower:upper,:]))
-print(mean_area_rho)
-print(rho[lower:upper,:])
-print(np.shape(rho[lower:upper,:]))
 
+#check
+#print(np.shape(rho[lower:upper,:]))
+#print(mean_area_rho)
+#print(rho[lower:upper,:])
+#print(np.shape(rho[lower:upper,:]))
 
 
 #plot

@@ -5,6 +5,7 @@ from natsort import natsorted
 
 #importpath = r'E:\Kaiser\2020-06-30 110614A TMRLE 250nm\S110614A_T4K_A250nm_PpPol_Kpl_W775nm_raw'
 importpath = 'S110614A_T4K_A250nm_PpPol_Kpl_W775nm_raw'
+#importpath = '022818A 250nm 45K 2020-07-31'
 files = natsorted(glob.glob(importpath + '/*.txt'))     # natsorted macht 1,2,11 und nicht 1,11,2 wie sorted()
 
 #print(importpath)
