@@ -3,9 +3,24 @@ import glob
 from natsort import natsorted
 
 
+# habe alle daten eingelesen um die in ein file zu speichern
+# daten sind in ordner temperaturahänigkeit (hatte ich zu einlesen manuell rauskopiert)
+
 #importpath = r'E:\Kaiser\2020-06-30 110614A TMRLE 250nm\S110614A_T4K_A250nm_PpPol_Kpl_W775nm_raw'
 importpath = 'S110614A_T4K_A250nm_PpPol_Kpl_W775nm_raw'
+#importpath = '022818A 250nm 4K 2020-07-14'
+#importpath = '022818A 250nm 5K 2020-07-20'
+#importpath = '022818A 250nm 10K 2020-07-20'
+#importpath = '022818A 250nm 10K 2020-07-23'
+#importpath = '022818A 250nm 15K 2020-07-23'
+#importpath = '022818A 250nm 20K 2020-07-23'
+#importpath = '022818A 250nm 25K 2020-07-23'
+#importpath = '022818A 250nm 25K 2020-07-27'
+#importpath = '022818A 250nm 35K 2020-07-27'
+#importpath = '022818A 250nm 35K 2020-07-31'
+#importpath = '022818A 250nm 45K 2020-07-27'
 #importpath = '022818A 250nm 45K 2020-07-31'
+
 files = natsorted(glob.glob(importpath + '/*.txt'))     # natsorted macht 1,2,11 und nicht 1,11,2 wie sorted()
 
 #print(importpath)
@@ -83,9 +98,9 @@ mittelwert_matrix_neg=np.mean(dataB_neg,axis=0)
 
 #Neuer Mittelwert Korrektur wegen Sensorgröße --> Mittelwerte sind Matrizen (liste in liste)
 #**************************
-mittelwert_matrix_new = mittelwert_matrix[:,15:244]
-mittelwert_matrix_new_pos = mittelwert_matrix_pos[:,15:244]
-mittelwert_matrix_new_neg = mittelwert_matrix_neg[:,15:244]
+#mittelwert_matrix_new = mittelwert_matrix[:,15:244]
+#mittelwert_matrix_new_pos = mittelwert_matrix_pos[:,15:244]
+#mittelwert_matrix_new_neg = mittelwert_matrix_neg[:,15:244]
 #print(mittelwert_matrix_new.shape)  # (1024,229)
 #**************************
 

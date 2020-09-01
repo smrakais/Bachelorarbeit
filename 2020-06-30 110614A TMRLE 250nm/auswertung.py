@@ -5,21 +5,28 @@ import matplotlib.pyplot as plt
 #import time
 
 
-#daten laden
+#load data
 data = np.load('read_data.npz')
+
+#selecting the specific values
 mm = data['mm']
 mm_pos = data['mm_pos']
 mm_neg = data['mm_neg']
 
-#TODO sensorgröße jeweils anpassen funktnion?
+
+#daten der Temperaturabhängigkeit in array laden
+Temperaturabhängigkeit = [np.load('read_data_4K.npz'),np.load('read_data_5K.npz'),
+                          np.load('read_data_10K.npz'),np.load('read_data_10K_2.npz'),
+                          np.load('read_data_15K.npz'),np.load('read_data_20K.npz'),
+                          np.load('read_data_25K.npz'),np.load('read_data_25K_2.npz'),
+                          np.load('read_data_35K.npz'),np.load('read_data_35K_2.npz'),
+                          np.load('read_data_45K.npz'),np.load('read_data_45K_2.npz')] 
+
 
 #korrektur sensorgröße
 mm = mm[:,15:244]
 mm_pos = mm_pos[:,15:244]
 mm_neg = mm_neg[:,15:244]
-
-
-#TODO alles obere speichern in externer datei speichern und dann einlesen.
 
 
 # Set wavelength
@@ -45,7 +52,7 @@ plt.savefig('build/photolumineszenz.png')
 #***************************************************************************************************************************
 #Intensitätsunterschied rho berechnen 
 plt.clf()                  # very useful to prevent plots to interact with each other. alternative: object oriented plotting.
-rho= (mm_pos - mm_neg) / (mm_pos + mm_neg)
+rho = (mm_pos - mm_neg) / (mm_pos + mm_neg)
 plt.pcolormesh(theta_new,wl,rho,cmap='bwr')
 plt.clim(-0.15,0.15)        #bar limit
 plt.xlabel(r'$\theta / \mathrm{°}$')
@@ -139,3 +146,46 @@ plt.title('Intensität bei einer Wellenlämge von %i nm.' % wavelenght)
 #save
 plt.savefig('build/positive_and_negative_intensity_at_specific_wavelength_%i_nm.png' % wavelenght)
 #***************************************************************************************************************************
+
+#***************************************************************************************************************************
+#program to plot the intensity against the angle at a certain wavelength
+
+#plot
+plt.clf()
+plt.grid()
+plt.minorticks_on()
+
+#for labels
+names = ['4K','5K','10K','10K','15K','20K','25K','25K','35K','35K','45K','45K']
+
+for enum, index in enumerate(Temperaturabhängigkeit):# so bekommst du die zahl des durchlaufes noch raus
+    #load data
+    
+    data = index
+
+    #get value ohne sensorkorrektur
+    mm = data['mm']
+    mm_pos = data['mm_pos']
+    mm_neg = data['mm_neg']
+
+    #korrektur sensorgröße
+    mm = mm[:,13:245]           #neuer bereich von lars vorgegeben
+    mm_pos = mm_pos[:,13:245]
+    mm_neg = mm_neg[:,13:245]
+
+    #plot
+    rho = (mm_pos - mm_neg) / (mm_pos + mm_neg)
+    mean_intensity_rho = np.mean(rho[lower:upper,:],axis=0)
+    theta_new=np.linspace(-23.578,23.578,mm.shape[1])
+    plt.plot(theta_new,mean_intensity_rho,label = names[enum])
+
+    #format
+    plt.xlim(theta[0], theta[-1])
+    plt.xlabel(r'$\theta / \mathrm{°}$')
+    plt.ylabel(r'$\rho$')
+    plt.legend(ncol=2)
+    #plt.legend(loc='best',ncol=2)
+    plt.title(' Messung bei einer Wellenlämge von %i nm.' % wavelenght)
+
+plt.savefig('build/Temperaturabhaenigkeit.png')
+##***************************************************************************************************************************
