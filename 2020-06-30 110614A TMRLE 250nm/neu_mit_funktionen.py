@@ -56,7 +56,7 @@ def colormap_intensity(PathData, start, stop):          # minValue of start = 0
     cbar.set_label('Intensity')
     
     #plt.show()
-    plt.savefig('build/colormap__intensity_photolumineszenz_' + PathData + '.png')
+    plt.savefig('build/colormap__intensity_photolumineszenz_' + PathData + '.png') # colormaps as png because eps takes to long
     plt.clf()
 
 ##############################################
@@ -84,7 +84,7 @@ def colormap_change_intensity(PathData, start, stop):
     cbar = plt.colorbar()
     cbar.set_label('relative Intensity')
 
-    plt.savefig('build/colormap_rel_change_intensity_'  + PathData + '.png')
+    plt.savefig('build/colormap_rel_change_intensity_'  + PathData + '.png') # colormaps as png because eps takes to long
     plt.clf()
 
 ####################################################################
@@ -131,7 +131,7 @@ def plot_rho_specific_wavelenght(PathData, wavelenght, start, stop):
     plt.title('Messung bei einer Wellelänge von %i nm' % wavelenght)
 
     #save
-    plt.savefig('build/rho_at_specific_wavelength_%i_nm_' % wavelenght + PathData + '.png' )
+    plt.savefig('build/rho_at_specific_wavelength_%i_nm_' % wavelenght + PathData + '.eps' )
     plt.clf()
 
 #######################################################################################################
@@ -189,7 +189,7 @@ def plot_intensity_pos_neg_b_field(PathData,wavelength, start, stop):
 
     #save
     #plt.show()
-    plt.savefig('build/positive_and_negative_intensity_at_specific_wavelength_%i_nm_' % wavelength + PathData + '.png' )
+    plt.savefig('build/positive_and_negative_intensity_at_specific_wavelength_%i_nm_' % wavelength + PathData + '.eps' )
     plt.clf()
 
 #############################################################################################
@@ -218,9 +218,8 @@ def plot_rho_diff_temp_const_wavelength(PathData,wavelength,start,stop):
 
         minimized_array = abs(wl-wavelength)                    # minimal array #TODO   
         minimum_value = np.amin(minimized_array)                # find minimum_value of array        
-        index = np.where(minimized_array == minimum_value)      # index of the minimum
-        #print(index[0][0])                                      # only index 
-        index = index[0][0]
+        index = np.where(minimized_array == minimum_value)      # index of the minimum                                   
+        index = index[0][0]                                     # only index
         print('You selected the wavelength:' + str(wl[index])+ 'nm. The wavelength you wanted was: ' + str(wavelength) +'nm.')
 
         #shift
@@ -242,7 +241,9 @@ def plot_rho_diff_temp_const_wavelength(PathData,wavelength,start,stop):
         plt.title(' Messung bei einer Wellenlänge von %i nm.' % wavelength)
 
     #plt.show()
-    plt.savefig('build/Temperaturabhaengigkeit_rho_at_%i_nm_' %wavelength + '.png')
+    #plt.savefig('build/Temperaturabhaengigkeit_rho_at_%i_nm_' %wavelength + '.png')
+    plt.savefig('build/Temperaturabhaengigkeit_rho_at_%i_nm_' %wavelength + '.eps')
+
 
 
 #example
