@@ -27,7 +27,14 @@ theta=np.linspace(-23.578,23.578,256) #without sensor correction
 #####################
 def rho (mm_pos,mm_neg):
    return (mm_pos - mm_neg) / (mm_pos + mm_neg)
-     
+
+#############     
+####shift#### -----> noch nicht eingesetzt
+#############
+def shift(area,index):                                  # careful can fail at boundries!
+    lower = index - area
+    upper = index + area + 1 
+    return lower, upper
 
 ###########################
 ####Colormap: Intensity####
@@ -52,16 +59,12 @@ def colormap_intensity(PathData, start, stop):          # minValue of start = 0
     plt.savefig('build/colormap__intensity_photolumineszenz_' + PathData + '.png')
     plt.clf()
 
-#example
-#call function to pass data, start and stop
-colormap_intensity('read_data.npz',15,244)
-
 ##############################################
 ####colormap: relative change in intensity#### 
 ##############################################
 def colormap_change_intensity(PathData, start, stop):
     
-    data = np.load(PathData)
+    data = np.load(PathData)                #TODO extra load funktion + cut--> def load_and_cut():
     mm = data['mm']
     mm_pos = data['mm_pos']
     mm_neg = data['mm_neg']  
@@ -84,56 +87,116 @@ def colormap_change_intensity(PathData, start, stop):
     plt.savefig('build/colormap_rel_change_intensity_'  + PathData + '.png')
     plt.clf()
 
-#example
-#call function
-colormap_change_intensity('read_data.npz',15,244)
-
 ####################################################################
 ####plot: rho at a specific wavelenght with respect to the angle####
 ####################################################################
 
-def pot_rho_specific_wavelenght(PathData, wavelenght):
+def plot_rho_specific_wavelenght(PathData, wavelenght, start, stop):
 
-    minimized_array = abs(wl-wavelenght)                    #minimal array
-    #print(minimized_array)
+    data = np.load(PathData)
 
-    minimum_value = np.amin(minimized_array)                #find minimum_value of array
-    #print(minimum_value)
+    mm = data['mm']
+    mm_pos = data['mm_pos']
+    mm_neg = data['mm_neg']  
 
-    index = np.where(minimized_array == minimum_value)      #index of the minimum
-    #print(index[0][0])                                     #only index 
+    mm = mm[:,start:stop]
+    mm_pos = mm_pos[:,start:stop]
+    mm_neg = mm_neg[:,start:stop]  
+
+    minimized_array = abs(wl-wavelenght)                    # minimal array
+    minimum_value = np.amin(minimized_array)                # find minimum_value of array
+    
+    index = np.where(minimized_array == minimum_value)      # index of the minimum
+    #print(index[0][0])                                     # only index 
     index = index[0][0]
     print('You selected the wavelength:', wl[index],'nm.', 'The wavelength you wanted was: ', wavelenght,'nm.')
 
-
-    #careful fails at boundries --> out of bounds
-    shift = 20
+    shift = 20                                              # careful fails at boundries --> out of bounds #TODO extra funktion
     lower = index - shift
-    upper = index + shift + 1       #because of upper bound in mean_area_rho, see next line!
+    upper = index + shift + 1                               # because of upper bound in mean_area_rho, see next line!
 
-    mean_area_rho = np.mean(rho[lower:upper,:],axis=0) #axis=0 is command for mean. otherwise it would give me only one value instead of a list.
-
-    #check
-    #print(np.shape(rho[lower:upper,:]))
-    #print(mean_area_rho)
-    #print(rho[lower:upper,:])
-    #print(np.shape(rho[lower:upper,:]))
-
+    value_rho = rho(mm_pos,mm_neg)
+    mean_area_rho = np.mean(value_rho[lower:upper,:],axis=0) # axis=0 command for mean. otherwise --> only one value instead of a list.
 
     #plot
-    plt.clf()
     plt.grid()
     plt.minorticks_on()
 
-    #plt.plot(theta_new,rho[index,:],'b-')       # without mean 
-    plt.plot(theta_new,mean_area_rho,'r-')      # with mean
+    theta_new = np.linspace(-23.578,23.578,mm.shape[1])
 
+    plt.plot(theta_new,mean_area_rho,'r-')
     plt.xlim(theta_new[0], theta_new[-1])
     plt.xlabel(r'$\theta / \mathrm{°}$')
     plt.ylabel(r'$\rho$')
     plt.title('Messung bei einer Wellelänge von %i nm' % wavelenght)
 
     #save
-    plt.savefig('build/rho_at_specific_wavelength_%i_nm.png' % wavelenght)
+    plt.savefig('build/rho_at_specific_wavelength_%i_nm_' % wavelenght + PathData + '.png' )
+    plt.clf()
 
-pot_rho_specific_wavelenght('read_data.npz',470,)
+#######################################################################################################
+####plot: intensity with respect to theta for positive and negative B-field for specific wavelenght####
+#######################################################################################################
+
+def plot_intensity_pos_neg_b_field(PathData,wavelenght, start, stop):
+
+    data = np.load(PathData)
+
+    mm = data['mm']
+    mm_pos = data['mm_pos']
+    mm_neg = data['mm_neg']  
+
+    mm = mm[:,start:stop]
+    mm_pos = mm_pos[:,start:stop]
+    mm_neg = mm_neg[:,start:stop] 
+      
+    minimized_array = abs(wl-wavelenght)                    # minimal array
+    #print(minimized_array)
+
+    minimum_value = np.amin(minimized_array)                # find minimum_value of array
+    #print(minimum_value)
+
+    index = np.where(minimized_array == minimum_value)      # index of the minimum
+    print(index[0][0])                                      # only index 
+    index = index[0][0]
+    print('You selected the wavelength:', wl[index],'nm.', 'The wavelength you wanted was: ', wavelenght,'nm.')
+
+    #shift
+    shift = 20                          # can fail at boundries                 
+    lower = index - shift
+    upper = index + shift + 1
+
+    #plot
+    plt.grid()
+    plt.minorticks_on()
+
+    #pos intensity
+    theta_new = np.linspace(-23.578,23.578,mm.shape[1])
+    mean_intensity_pos = np.mean(mm_pos[lower:upper,:],axis=0)
+    plt.plot(theta_new,mean_intensity_pos,'r-',label='pos. Magnetfeld')
+
+    #neg Intensity
+    mean_intensity_neg = np.mean(mm_neg[lower:upper,:],axis=0)
+    plt.plot(theta_new,mean_intensity_neg,'b-',label='neg. Magnetfeld')
+
+    #format
+    plt.xlim(theta_new[0], theta_new[-1])
+    plt.xlabel(r'$\theta / \mathrm{°}$')
+    plt.ylabel(r'$I$')
+    plt.legend(loc='best')
+
+    plt.title('Intensität bei einer Wellenlämge von %i nm.' % wavelenght)
+
+    #save
+    #plt.show()
+    plt.savefig('build/positive_and_negative_intensity_at_specific_wavelength_%i_nm_' % wavelenght + PathData + '.png' )
+
+
+
+#example
+colormap_intensity('read_data.npz',15,244)
+colormap_change_intensity('read_data.npz',15,244)
+plot_rho_specific_wavelenght('read_data.npz',740,15,244)
+plot_rho_specific_wavelenght('read_data.npz',750,15,244)
+plot_rho_specific_wavelenght('read_data.npz',831,15,244)
+plot_intensity_pos_neg_b_field('read_data.npz',740,14,255)

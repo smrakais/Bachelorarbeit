@@ -84,7 +84,7 @@ minimum_value = np.amin(minimized_array)          # find minimum_value of array
 #print(minimum_value)
 
 index = np.where(minimized_array == minimum_value)# index of the minimum
-#print(index[0][0])                              # only index 
+print(index[0][0])                              # only index 
 index = index[0][0]
 print('You selected the wavelength:', wl[index],'nm.', 'The wavelength you wanted was: ', wavelenght,'nm.')
 
