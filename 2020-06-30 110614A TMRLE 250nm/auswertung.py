@@ -77,7 +77,6 @@ plt.savefig('build/rel_aenderung.png')
 wavelenght = 740
 #wavelenght = 738
 
-
 minimized_array = abs(wl-wavelenght)            # minimal array
 #print(minimized_array)
 
