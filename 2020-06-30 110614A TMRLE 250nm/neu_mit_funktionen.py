@@ -252,7 +252,6 @@ plot_rho_specific_wavelenght('read_data.npz',740,15,244)
 plot_rho_specific_wavelenght('read_data.npz',750,15,244)
 plot_rho_specific_wavelenght('read_data.npz',831,15,244)
 plot_intensity_pos_neg_b_field('read_data.npz',740,14,255)
-
 Temperaturabhängigkeit = [np.load('read_data_4K.npz'),np.load('read_data_5K.npz'),
                           np.load('read_data_10K.npz'),np.load('read_data_10K_2.npz'),
                           np.load('read_data_15K.npz'),np.load('read_data_20K.npz'),
