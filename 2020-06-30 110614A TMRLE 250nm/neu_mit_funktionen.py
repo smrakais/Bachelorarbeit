@@ -138,7 +138,7 @@ def plot_rho_specific_wavelenght(PathData, wavelenght, start, stop):
 ####plot: intensity with respect to theta for positive and negative B-field for specific wavelenght####
 #######################################################################################################
 
-def plot_intensity_pos_neg_b_field(PathData,wavelenght, start, stop):
+def plot_intensity_pos_neg_b_field(PathData,wavelength, start, stop):
 
     data = np.load(PathData)
 
@@ -150,7 +150,7 @@ def plot_intensity_pos_neg_b_field(PathData,wavelenght, start, stop):
     mm_pos = mm_pos[:,start:stop]
     mm_neg = mm_neg[:,start:stop] 
       
-    minimized_array = abs(wl-wavelenght)                    # minimal array
+    minimized_array = abs(wl-wavelength)                    # minimal array
     #print(minimized_array)
 
     minimum_value = np.amin(minimized_array)                # find minimum_value of array
@@ -159,7 +159,7 @@ def plot_intensity_pos_neg_b_field(PathData,wavelenght, start, stop):
     index = np.where(minimized_array == minimum_value)      # index of the minimum
     print(index[0][0])                                      # only index 
     index = index[0][0]
-    print('You selected the wavelength:', wl[index],'nm.', 'The wavelength you wanted was: ', wavelenght,'nm.')
+    print('You selected the wavelength:', wl[index],'nm.', 'The wavelength you wanted was: ', wavelength,'nm.')
 
     #shift
     shift = 20                          # can fail at boundries                 
@@ -185,12 +185,64 @@ def plot_intensity_pos_neg_b_field(PathData,wavelenght, start, stop):
     plt.ylabel(r'$I$')
     plt.legend(loc='best')
 
-    plt.title('Intensität bei einer Wellenlämge von %i nm.' % wavelenght)
+    plt.title('Intensität bei einer Wellenlämge von %i nm.' % wavelength)
 
     #save
     #plt.show()
-    plt.savefig('build/positive_and_negative_intensity_at_specific_wavelength_%i_nm_' % wavelenght + PathData + '.png' )
+    plt.savefig('build/positive_and_negative_intensity_at_specific_wavelength_%i_nm_' % wavelength + PathData + '.png' )
+    plt.clf()
 
+#############################################################################################
+####plot: different rho's at a specific wavelenght and temperature with respect to theta ####
+#############################################################################################
+#for labels
+names = ['4K','5K','10K','10K','15K','20K','25K','25K','35K','35K','45K','45K']
+
+def plot_rho_diff_temp_const_wavelength(PathData,wavelength,start,stop):
+
+    plt.grid()
+    plt.minorticks_on()
+
+    for enum, index in enumerate(PathData):# so bekommst du die zahl des durchlaufes noch raus wird in enum gespeichert.
+        
+        data = index
+
+        mm = data['mm']
+        mm_pos = data['mm_pos']
+        mm_neg = data['mm_neg']
+
+        #korrektur sensorgröße
+        mm = mm[:,start:stop]                                    
+        mm_pos = mm_pos[:,start:stop]
+        mm_neg = mm_neg[:,start:stop]
+
+        minimized_array = abs(wl-wavelength)                    # minimal array #TODO   
+        minimum_value = np.amin(minimized_array)                # find minimum_value of array        
+        index = np.where(minimized_array == minimum_value)      # index of the minimum
+        #print(index[0][0])                                      # only index 
+        index = index[0][0]
+        print('You selected the wavelength:' + str(wl[index])+ 'nm. The wavelength you wanted was: ' + str(wavelength) +'nm.')
+
+        #shift
+        shift = 20                                              # can fail at boundries                 
+        lower = index - shift
+        upper = index + shift + 1
+    
+        rho(mm_pos,mm_neg)
+        value_rho = rho(mm_pos,mm_neg)
+        mean_intensity_rho = np.mean(value_rho[lower:upper,:],axis=0)
+        theta_new=np.linspace(-23.578,23.578,mm.shape[1])
+
+        plt.plot(theta_new,mean_intensity_rho,label = names[enum])
+        
+        plt.xlim(theta[0], theta[-1])
+        plt.xlabel(r'$\theta / \mathrm{°}$')
+        plt.ylabel(r'$\rho$')
+        plt.legend(ncol=2)
+        plt.title(' Messung bei einer Wellenlänge von %i nm.' % wavelength)
+
+    #plt.show()
+    plt.savefig('build/Temperaturabhaengigkeit_rho_at_%i_nm_' %wavelength + '.png')
 
 
 #example
@@ -200,3 +252,10 @@ plot_rho_specific_wavelenght('read_data.npz',740,15,244)
 plot_rho_specific_wavelenght('read_data.npz',750,15,244)
 plot_rho_specific_wavelenght('read_data.npz',831,15,244)
 plot_intensity_pos_neg_b_field('read_data.npz',740,14,255)
+Temperaturabhängigkeit = [np.load('read_data_4K.npz'),np.load('read_data_5K.npz'),
+                          np.load('read_data_10K.npz'),np.load('read_data_10K_2.npz'),
+                          np.load('read_data_15K.npz'),np.load('read_data_20K.npz'),
+                          np.load('read_data_25K.npz'),np.load('read_data_25K_2.npz'),
+                          np.load('read_data_35K.npz'),np.load('read_data_35K_2.npz'),
+                          np.load('read_data_45K.npz'),np.load('read_data_45K_2.npz')] 
+plot_rho_diff_temp_const_wavelength(Temperaturabhängigkeit,740,13,245) # boundries from Lars
