@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 
 #load data
 data = np.load('read_data.npz')
+#data = np.load('read_data_10K.npz')
 
 #selecting the specific values
 mm = data['mm']
@@ -22,6 +23,8 @@ Temperaturabhängigkeit = [np.load('read_data_4K.npz'),np.load('read_data_5K.npz
                           np.load('read_data_35K.npz'),np.load('read_data_35K_2.npz'),
                           np.load('read_data_45K.npz'),np.load('read_data_45K_2.npz')] 
 
+
+#TODO bemerkung die erste grüne 10K messung ist sehr schlecht und die blaue 45K
 
 #korrektur sensorgröße
 mm = mm[:,15:244]
@@ -72,6 +75,8 @@ plt.savefig('build/rel_aenderung.png')
 # program to select a certain wavelength and to plot the relative intensity againt the angle
 
 wavelenght = 740
+#wavelenght = 738
+
 
 minimized_array = abs(wl-wavelenght)            # minimal array
 #print(minimized_array)
@@ -187,5 +192,20 @@ for enum, index in enumerate(Temperaturabhängigkeit):# so bekommst du die zahl 
     #plt.legend(loc='best',ncol=2)
     plt.title(' Messung bei einer Wellenlämge von %i nm.' % wavelenght)
 
-plt.savefig('build/Temperaturabhaenigkeit.png')
+plt.savefig('build/Temperaturabhaenigkeit_const_wellenlaenge.png')
 ##***************************************************************************************************************************
+
+##***************************************************************************************************************************
+#program to plot the intensity against the wavelenght at a certain angle
+
+'''
+ich muss die rho plotten und den winkel einstellen
+die wellen länge muss ich als x werte  benutzen
+
+das rho muss auch gemittelt werden --> gleiche fnktnion wie bereits verwendet
+
+    rho = (mm_pos - mm_neg) / (mm_pos + mm_neg)
+    mean_intensity_rho = np.mean(rho[lower:upper,:],axis=0)
+
+'''
+print(wl.shape)
