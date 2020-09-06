@@ -3,13 +3,13 @@ import matplotlib.pyplot as plt
 
 
 '''
-alles sollen funktionen sein
 
-ich über geben einer funktion den datensatz und die printed mir den graphen
+Das ist die Verbsserung von auswertung.py
+Alles ist in Funktionen geliedert und kann viel besser und bequemer
+aufgerufen werden.
 
+Das Skript kann aber noch verbessert werden. :)
 
-bspl call_colormesh_int()
-     call_rho_angle()
 '''
 
 ##############
@@ -29,8 +29,7 @@ def rho (mm_pos,mm_neg):
    return (mm_pos - mm_neg) / (mm_pos + mm_neg)
 
 #############     
-####shift#### -----> noch nicht eingesetzt
-#############
+####shift#### -----> noch nicht verwendet
 def shift(area,index):                                  # careful can fail at boundries!
     lower = index - area
     upper = index + area + 1 
@@ -40,8 +39,7 @@ def shift(area,index):                                  # careful can fail at bo
 ####Colormap: Intensity####
 ###########################
 def colormap_intensity(PathData, start, stop):          # minValue of start = 0
-                                                        # maxValue of stop = 257 (if you go higher it will ignore it)
-                                                        # name of Data that is used
+                                                        # maxValue of stop = 257 (if you go higher it will ignore it)                                                        
     data = np.load(PathData)
     mm = data['mm']                                     # select data --> look einlesen.py
     mm = mm[:,start:stop]                               # sensorfield  correction
