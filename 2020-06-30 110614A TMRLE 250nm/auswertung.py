@@ -1,14 +1,18 @@
 import numpy as np
 import matplotlib.pyplot as plt
+'''
+Das ist die Verbsserung.
+Alles ist in Funktionen geliedert und kann viel besser und bequemer
+aufgerufen werden.
+Das Skript kann aber noch verbessert werden. :)
+'''
 
 
 '''
-
-Das ist die Verbsserung von auswertung.py
-Alles ist in Funktionen geliedert und kann viel besser und bequemer
-aufgerufen werden.
-
-Das Skript kann aber noch verbessert werden. :)
+##########################
+####Tipps für den Code####
+##########################   
+fig = plt.gca() #gca() makes it object orientated
 
 '''
 
@@ -52,7 +56,9 @@ def colormap_intensity(PathData, start, stop):          # minValue of start = 0
     plt.title('Photolumineszenz')
     cbar = plt.colorbar()
     cbar.set_label('Intensity')
-    
+
+    plt.xlim(-20, 20) #changed#
+    plt.ylim(755, 730) #changed#
     #plt.show()
     plt.savefig('build/colormap__intensity_photolumineszenz_' + PathData + '.png') # colormaps as png because eps takes to long
     plt.clf()
@@ -82,13 +88,14 @@ def colormap_change_intensity(PathData, start, stop):
     cbar = plt.colorbar()
     cbar.set_label('relative Intensity')
 
+    plt.xlim(-20, 20) #changed#
+    plt.ylim(755,730) #changed#
     plt.savefig('build/colormap_rel_change_intensity_'  + PathData + '.png') # colormaps as png because eps takes to long
     plt.clf()
 
 ####################################################################
 ####plot: rho at a specific wavelenght with respect to the angle####
 ####################################################################
-
 def plot_rho_specific_wavelenght(PathData, wavelenght, start, stop):
 
     data = np.load(PathData)
@@ -114,8 +121,9 @@ def plot_rho_specific_wavelenght(PathData, wavelenght, start, stop):
     upper = index + shift + 1                               # because of upper bound in mean_area_rho, see next line!
 
     value_rho = rho(mm_pos,mm_neg)
+    #print(value_rho)
     mean_area_rho = np.mean(value_rho[lower:upper,:],axis=0) # axis=0 command for mean. otherwise --> only one value instead of a list.
-
+    
     #plot
     plt.grid()
     plt.minorticks_on()
@@ -123,7 +131,8 @@ def plot_rho_specific_wavelenght(PathData, wavelenght, start, stop):
     theta_new = np.linspace(-23.578,23.578,mm.shape[1])
 
     plt.plot(theta_new,mean_area_rho,'r-')
-    plt.xlim(theta_new[0], theta_new[-1])
+    #plt.xlim(theta_new[0], theta_new[-1])
+    plt.xlim(-20, 20) #changed#
     plt.xlabel(r'$\theta / \mathrm{°}$')
     plt.ylabel(r'$\rho$')
     plt.title('Messung bei einer Wellelänge von %i nm' % wavelenght)
@@ -135,7 +144,6 @@ def plot_rho_specific_wavelenght(PathData, wavelenght, start, stop):
 #######################################################################################################
 ####plot: intensity with respect to theta for positive and negative B-field for specific wavelenght####
 #######################################################################################################
-
 def plot_intensity_pos_neg_b_field(PathData,wavelength, start, stop):
 
     data = np.load(PathData)
@@ -155,7 +163,7 @@ def plot_intensity_pos_neg_b_field(PathData,wavelength, start, stop):
     #print(minimum_value)
 
     index = np.where(minimized_array == minimum_value)      # index of the minimum
-    print(index[0][0])                                      # only index 
+    #print(index[0][0])                                      # only index 
     index = index[0][0]
     print('You selected the wavelength:', wl[index],'nm.', 'The wavelength you wanted was: ', wavelength,'nm.')
 
@@ -178,12 +186,13 @@ def plot_intensity_pos_neg_b_field(PathData,wavelength, start, stop):
     plt.plot(theta_new,mean_intensity_neg,'b-',label='neg. Magnetfeld')
 
     #format
-    plt.xlim(theta_new[0], theta_new[-1])
+    #plt.xlim(theta_new[0], theta_new[-1])
+    plt.xlim(-20, 20) #changed#
     plt.xlabel(r'$\theta / \mathrm{°}$')
     plt.ylabel(r'$I$')
     plt.legend(loc='best')
 
-    plt.title('Intensität bei einer Wellenlämge von %i nm.' % wavelength)
+    plt.title('Intensität bei einer Wellenlänge von %i nm.' % wavelength)
 
     #save
     #plt.show()
@@ -194,9 +203,11 @@ def plot_intensity_pos_neg_b_field(PathData,wavelength, start, stop):
 ####plot: different rho's at a specific wavelenght and temperature with respect to theta ####
 #############################################################################################
 #for labels
-names = ['4K','5K','10K','10K','15K','20K','25K','25K','35K','35K','45K','45K']
+#names = ['4K','5K','10K','10K','15K','20K','25K','25K','35K','35K','45K','45K']
+#names = ['4K','10K','20K','45K']
 
-def plot_rho_diff_temp_const_wavelength(PathData,wavelength,start,stop):
+def plot_rho_diff_temp_const_wavelength(PathData,wavelength,start,stop,temps):
+    max_values = []                                            #maximum values of rho 
 
     plt.grid()
     plt.minorticks_on()
@@ -228,33 +239,84 @@ def plot_rho_diff_temp_const_wavelength(PathData,wavelength,start,stop):
         rho(mm_pos,mm_neg)
         value_rho = rho(mm_pos,mm_neg)
         mean_intensity_rho = np.mean(value_rho[lower:upper,:],axis=0)
-        theta_new=np.linspace(-23.578,23.578,mm.shape[1])
+        theta_new = np.linspace(-23.578,23.578,mm.shape[1])
 
-        plt.plot(theta_new,mean_intensity_rho,label = names[enum])
+        plt.plot(theta_new,mean_intensity_rho,label = temps[enum])
         
-        plt.xlim(theta[0], theta[-1])
+        #plt.xlim(theta[0], theta[-1])
+        
+        plt.xlim(-20, 20) #changed#
         plt.xlabel(r'$\theta / \mathrm{°}$')
         plt.ylabel(r'$\rho$')
         plt.legend(ncol=2)
         plt.title(' Messung bei einer Wellenlänge von %i nm.' % wavelength)
+        
+        #############################################################
+        ####find max value of rho with respect to the angle theta####
+        #############################################################
+        #print(np.argmax(mean_intensity_rho)) #damit habe ich nur die stelle (index) rausgefunden bei der der maximale wert ist.
+        #print(mean_intensity_rho[53])        
+        max_values.append(max(mean_intensity_rho))    
+        #print(theta_new[53]) # = -12.758
+    
 
+    plt.axvline(x=-12.758,color ='gold',linestyle = '--')
+    plt.axvline(x=12.758,color ='gold',linestyle = '--')
+    
     #plt.show()
-    #plt.savefig('build/Temperaturabhaengigkeit_rho_at_%i_nm_' %wavelength + '.png')
-    plt.savefig('build/Temperaturabhaengigkeit_rho_at_%i_nm_' %wavelength + '.eps')
+    ###############################
+    ####Teil des Speichernamens####
+    ###############################
+    save = ''
+    for entry in temps:
+        save+=entry
+        
+
+    plt.savefig('build/Temperaturabhaengigkeit_rho_at_%i_nm_' %wavelength + save + '.eps')
+    plt.clf()
+    return max_values
 
 
+#######################################################
+####maximum values of rho with respect to the angle####
+#######################################################
+def plot_max_values_of_rho(max_values,temps):
+    plt.plot(temps,max_values,'r+',label = 'maximale rho')
+    plt.show()
+    plt.clf()
 
 #example
 colormap_intensity('read_data.npz',15,244)
 colormap_change_intensity('read_data.npz',15,244)
 plot_rho_specific_wavelenght('read_data.npz',740,15,244)
-plot_rho_specific_wavelenght('read_data.npz',750,15,244)
-plot_rho_specific_wavelenght('read_data.npz',831,15,244)
-plot_intensity_pos_neg_b_field('read_data.npz',740,14,255)
-Temperaturabhängigkeit = [np.load('read_data_4K.npz'),np.load('read_data_5K.npz'),
-                          np.load('read_data_10K.npz'),np.load('read_data_10K_2.npz'),
-                          np.load('read_data_15K.npz'),np.load('read_data_20K.npz'),
-                          np.load('read_data_25K.npz'),np.load('read_data_25K_2.npz'),
-                          np.load('read_data_35K.npz'),np.load('read_data_35K_2.npz'),
-                          np.load('read_data_45K.npz'),np.load('read_data_45K_2.npz')] 
-plot_rho_diff_temp_const_wavelength(Temperaturabhängigkeit,740,13,245) # boundries from Lars
+#plot_rho_specific_wavelenght('read_data.npz',750,15,244)
+#plot_rho_specific_wavelenght('022818A 250nm 10K 2020-07-20.npz',739,13,245)
+#plot_rho_specific_wavelenght('read_data.npz',831,15,244)
+#plot_intensity_pos_neg_b_field('read_data.npz',740,14,255)
+#
+#alle Temperaturen
+Temperaturabhängigkeit = [np.load('Temperaturabhaengigkeit/022818A 250nm 4K 2020-07-14.npz'),
+                            np.load('Temperaturabhaengigkeit/022818A 250nm 5K 2020-07-20.npz'),
+                            np.load('Temperaturabhaengigkeit/022818A 250nm 10K 2020-07-20.npz'),
+                            np.load('Temperaturabhaengigkeit/022818A 250nm 10K 2020-07-23.npz'),
+                            np.load('Temperaturabhaengigkeit/022818A 250nm 15K 2020-07-23.npz'),
+                            np.load('Temperaturabhaengigkeit/022818A 250nm 20K 2020-07-23.npz'),
+                            np.load('Temperaturabhaengigkeit/022818A 250nm 25K 2020-07-23.npz'),
+                            np.load('Temperaturabhaengigkeit/022818A 250nm 25K 2020-07-27.npz'),
+                            np.load('Temperaturabhaengigkeit/022818A 250nm 35K 2020-07-27.npz'),
+                            np.load('Temperaturabhaengigkeit/022818A 250nm 35K 2020-07-31.npz'),
+                            np.load('Temperaturabhaengigkeit/022818A 250nm 45K 2020-07-27.npz'),
+                            np.load('Temperaturabhaengigkeit/022818A 250nm 45K 2020-07-31.npz')]
+                         
+temps = ['4K','5K','10K','10K','15K','20K','25K','25K','35K','35K','45K','45K']
+#boundries from Lars
+plot_max_values_of_rho(plot_rho_diff_temp_const_wavelength(Temperaturabhängigkeit,740,13,245,temps),temps) #die messung 25K_2 wegwerfen und die frühere von 45K
+
+
+#4 Temperaturen
+Temperaturabhängigkeit = [np.load('Temperaturabhaengigkeit/022818A 250nm 4K 2020-07-14.npz'),  
+                          np.load('Temperaturabhaengigkeit/022818A 250nm 10K 2020-07-20.npz'),
+                          np.load('Temperaturabhaengigkeit/022818A 250nm 25K 2020-07-23.npz'),
+                          np.load('Temperaturabhaengigkeit/022818A 250nm 45K 2020-07-27.npz')] 
+temps = ['4K','10K','25K','45K']
+plot_rho_diff_temp_const_wavelength(Temperaturabhängigkeit,740,13,245,temps) #die messung 25K_2 wegwerfen und die frühere von 45K
