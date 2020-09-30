@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.optimize import curve_fit
 '''
 Das ist die Verbsserung.
 Alles ist in Funktionen geliedert und kann viel besser und bequemer
@@ -34,10 +35,32 @@ def rho (mm_pos,mm_neg):
 
 #############     
 ####shift#### -----> noch nicht verwendet
+#############
 def shift(area,index):                                  # careful can fail at boundries!
     lower = index - area
     upper = index + area + 1 
     return lower, upper
+
+########################
+####rho_fit_function####
+########################
+def rho_fit_func(x, T_off, C_0):
+    # % Function to fit Temp dependence of C/rho
+    # % See Felix Dis, eq 8.14
+    # % Brill function 4.1, 4.2
+    S = 5/2
+    g_Mn = 2.01
+    mu_B = 9.2740100783e-24                             #% J/T
+    k_B  = 1.380649e-23                                 #% J/K
+    B = 0.5                                             #% T
+    T_0 = 1                                             #%K
+    kappa = S*mu_B*g_Mn*B/k_B
+    Xi = kappa / (x+T_0+T_off)
+    
+    # coth = cosh / sinh
+    Bril = (2*S+1)/(2*S)*(np.cosh((2*S+1)/(2*S)*Xi)/np.sinh((2*S+1)/(2*S)*Xi)) - 1/(2*S)*(np.cosh(1/(2*S)*Xi)/np.sinh(1/(2*S)*Xi))
+
+    return C_0 * Bril
 
 ###########################
 ####Colormap: Intensity####
@@ -240,20 +263,23 @@ def plot_rho_diff_temp_const_wavelength(PathData,wavelength,start,stop,temps):
         value_rho = rho(mm_pos,mm_neg)
         mean_intensity_rho = np.mean(value_rho[lower:upper,:],axis=0)
         theta_new = np.linspace(-23.578,23.578,mm.shape[1])
+        #plt.plot(theta_new,mean_intensity_rho,label = temps[enum])
+        #plt.ylabel(r'$\rho$')
 
-        plt.plot(theta_new,mean_intensity_rho,label = temps[enum])
+
+        ####C_0 calculation####
+        C_0 = (mean_intensity_rho - np.flip(mean_intensity_rho))/2
+        plt.plot(theta_new,C_0,label = temps[enum])
+        plt.ylabel(r'$c_o$')
+
         
         #plt.xlim(theta[0], theta[-1])
-        
         plt.xlim(-20, 20) #changed#
         plt.xlabel(r'$\theta / \mathrm{°}$')
-        plt.ylabel(r'$\rho$')
         plt.legend(ncol=2)
         plt.title(' Messung bei einer Wellenlänge von %i nm.' % wavelength)
         
-        #############################################################
-        ####find max value of rho with respect to the angle theta####
-        #############################################################
+        ####find max value of rho with respect to the angle theta####        
         #print(np.argmax(mean_intensity_rho)) #damit habe ich nur die stelle (index) rausgefunden bei der der maximale wert ist.
         #print(mean_intensity_rho[53])        
         max_values.append(max(mean_intensity_rho))    
@@ -264,9 +290,7 @@ def plot_rho_diff_temp_const_wavelength(PathData,wavelength,start,stop,temps):
     plt.axvline(x=12.758,color ='gold',linestyle = '--')
     
     #plt.show()
-    ###############################
     ####Teil des Speichernamens####
-    ###############################
     save = ''
     for entry in temps:
         save+=entry
@@ -280,9 +304,28 @@ def plot_rho_diff_temp_const_wavelength(PathData,wavelength,start,stop,temps):
 #######################################################
 ####maximum values of rho with respect to the angle####
 #######################################################
-def plot_max_values_of_rho(max_values,temps):
-    plt.plot(temps,max_values,'r+',label = 'maximale rho')
-    plt.show()
+#temps bei aufruf bitte immer anpassen!
+def plot_max_values_of_rho(max_values,temps_value):#TODO fit the function
+    plt.plot(temps_value,max_values,'r+',label = 'Maximale Effektstärke')
+    print(temps_value)
+    plt.grid()
+    plt.minorticks_on()
+    plt.xlabel(r'$T$ / K')
+    plt.ylabel(r'$\rho$')
+    plt.title('Maximale Effektstärke bei unterschiedlichen Temperaturen.')
+
+    ###########
+    ####FIT####
+    ###########    
+    params, covariance_matrix = curve_fit(rho_fit_func,temps_value,max_values)
+    errors = np.sqrt(np.diag(covariance_matrix))
+    print('T_off =',params[0], '±', errors[0])
+    print('C_0 =', params[1], '±', errors[1])    
+    temps_value_new = np.linspace(temps_value[0],temps_value [-1],100)
+    plt.plot(temps_value_new, rho_fit_func(temps_value_new, *params), "b-", label=r'Fit')
+    plt.legend(ncol=2)    
+
+    plt.savefig('build/Maximale_Rho_bei_Temperaturabhänigkeit.eps')
     plt.clf()
 
 #example
@@ -302,15 +345,18 @@ Temperaturabhängigkeit = [np.load('Temperaturabhaengigkeit/022818A 250nm 4K 202
                             np.load('Temperaturabhaengigkeit/022818A 250nm 15K 2020-07-23.npz'),
                             np.load('Temperaturabhaengigkeit/022818A 250nm 20K 2020-07-23.npz'),
                             np.load('Temperaturabhaengigkeit/022818A 250nm 25K 2020-07-23.npz'),
-                            np.load('Temperaturabhaengigkeit/022818A 250nm 25K 2020-07-27.npz'),
+                            #np.load('Temperaturabhaengigkeit/022818A 250nm 25K 2020-07-27.npz'),
                             np.load('Temperaturabhaengigkeit/022818A 250nm 35K 2020-07-27.npz'),
                             np.load('Temperaturabhaengigkeit/022818A 250nm 35K 2020-07-31.npz'),
                             np.load('Temperaturabhaengigkeit/022818A 250nm 45K 2020-07-27.npz'),
                             np.load('Temperaturabhaengigkeit/022818A 250nm 45K 2020-07-31.npz')]
                          
-temps = ['4K','5K','10K','10K','15K','20K','25K','25K','35K','35K','45K','45K']
+temps = ['4K','5K','10K','10K','15K','20K','25K','35K','35K','45K','45K']
+temps_value = [4,5,10,10,15,20,25,35,35,45,45]
+
 #boundries from Lars
-plot_max_values_of_rho(plot_rho_diff_temp_const_wavelength(Temperaturabhängigkeit,740,13,245,temps),temps) #die messung 25K_2 wegwerfen und die frühere von 45K
+#temps bei aufruf bitte immer anpassen!
+plot_max_values_of_rho(plot_rho_diff_temp_const_wavelength(Temperaturabhängigkeit,740,13,245,temps),temps_value) #die messung 25K_2 wegwerfen
 
 
 #4 Temperaturen
@@ -319,4 +365,4 @@ Temperaturabhängigkeit = [np.load('Temperaturabhaengigkeit/022818A 250nm 4K 202
                           np.load('Temperaturabhaengigkeit/022818A 250nm 25K 2020-07-23.npz'),
                           np.load('Temperaturabhaengigkeit/022818A 250nm 45K 2020-07-27.npz')] 
 temps = ['4K','10K','25K','45K']
-plot_rho_diff_temp_const_wavelength(Temperaturabhängigkeit,740,13,245,temps) #die messung 25K_2 wegwerfen und die frühere von 45K
+plot_rho_diff_temp_const_wavelength(Temperaturabhängigkeit,740,13,245,temps) #die messung 25K_2 wegwerfen
