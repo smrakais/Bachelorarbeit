@@ -81,7 +81,7 @@ def colormap_intensity(PathData, start, stop):          # minValue of start = 0
     cbar.set_label('Intensity')
 
     plt.xlim(-20, 20) #changed#
-    plt.ylim(755, 730) #changed#
+    plt.ylim(750, 725) #changed#
     #plt.show()
     plt.savefig('build/colormap__intensity_photolumineszenz_' + PathData + '.png') # colormaps as png because eps takes to long
     plt.clf()
@@ -330,7 +330,9 @@ def plot_max_values_of_rho(max_values,temps_value):#TODO fit the function
 
 #example
 colormap_intensity('read_data.npz',15,244)
+colormap_intensity('022818A 250nm 4K 2020-07-14.npz',15,244)
 colormap_change_intensity('read_data.npz',15,244)
+colormap_change_intensity('022818A 250nm 4K 2020-07-14.npz',15,244)
 plot_rho_specific_wavelenght('read_data.npz',740,15,244)
 #plot_rho_specific_wavelenght('read_data.npz',750,15,244)
 #plot_rho_specific_wavelenght('022818A 250nm 10K 2020-07-20.npz',739,13,245)
