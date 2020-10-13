@@ -1,0 +1,30 @@
+Theorie
+    Effekte und Zusammenhänge beschrieben die
+    Fuer erklärungen der Auswertung relevant sind
+    Plasmonen
+    Exitonen
+    Zeemaneffekt
+    Polarisation
+    Kopplung
+    Spin locking
+    Fit der modified function 
+
+
+Aufbau check 
+    Temperaturmessgerät check
+    Kühlung Helium check
+    Heizung noch einbauen check
+
+
+Durchführung check 
+    Fuer unterschiedliche tenperatzren
+    Gemessen wie Position sensor
+    Wie Probe geheizt bzw. probe gekuhlt
+    Magnetfeld umPolung
+
+
+Auswertungund Resultate praesentieren
+    Vglmit theorie
+
+
+Fazit und ausblick
