@@ -78,33 +78,39 @@ Im Spektrometer angekommen wird das Licht durch den Monochromator nach Wellenlä
 anschließend durch die CCD (charge-coupled device) registriert.
 
 \section{Durchführung des Experiments}
-Nachdem alle notwendigen optischen Elemente installiert worden sind, muss bevor 
-mit einer Messung begonnen werden kann die Probenoberfläche scharf abgebildet werden.
-Dafür wird wie bereits in ~\ref{sec:Beschreibung des Versuchsaufbaus} genannt ein Klappspiegel in den 
-Strahlengang geklappt und ein scharfes Bild der Probenoberfläche erzeugt. 
-Die Justierung erfolgt hierbei über mehrere installierte Mikrometerschrauben an der Probehalterung.
+Bevor mit einer Messung begonnen werden kann muss die Probe in den Fokus des Mikroskopobjektivs 
+gebracht werden. 
+Mit einem Klappspiegel und einer zusätzlichen Linse wird eine Abbildung des 
+Fokuspunktes auf der Kamera erzeugt. 
+Die Probe kann nun über Mikrometerschrauben, welche sich an der 
+Probenhalterung befinden justiert werden.
 Das Bild welches die Kamera aufnimmt wird Digital auf einen Computerbildschirm dargestellt. 
 Ist die Fokussierung abgeschlossen kann der Spiegel entfernt werden und mit der eigentlichen Messung 
 wird begonnen.
-Alle aufgenommenen Messungen werden über entsprechende Computersoftware gesteuert.
+Alle Messungen werden mit Hilfe entsprechende Computersoftware gestartet.
 %evtl im anderen kapitel übr die probe
 %Der Probenname ist 022818A 250nm. 
 %Wobei sich die Angabe 250nm auf die $\SI{250}{\nano\meter}$ Abstände des Goldgitters beziehen.
 %Das Experiment findet insgesamt für acht unterschiedliche Temperaturen statt.
-Die unterschiedlichen Messreihen werden nicht alle an dem selben Tag aufgenommen, sondern sind
-im Zeitraum von 14. Juli 2020 bis zum 31. Juli 2020 entstanden.
-Dies ist unter anderem um die Reproduzierbarkeit von Messergebnisses sicherzustellen geschehen.
+%
+%ALSO DAS LIEBER RAUSSLASSEN?
+%Die unterschiedlichen Messreihen werden nicht alle an dem selben Tag aufgenommen, sondern sind
+%im Zeitraum von 14. Juli 2020 bis zum 31. Juli 2020 entstanden.
+%Dies ist unter anderem um die Reproduzierbarkeit von Messergebnisses sicherzustellen geschehen.
 Zu Beginn der Messung wird die Temperatur so eingestellt, dass der Temperatursensor \SI{4}{\kelvin} zeigt. 
-Danach erfolgt die Messung des Hintergrunds und des Dunkelstromausschlags. 
-Wobei der Unterschied darin liegt, dass sich der Hintergrund auf die 
-einfallende Umgebungsstrahlung bezieht und der Dunkelstromaussschlag die Registrierung von Effekten 
-der CCD auch bei absoluter Dunkelheit und trotz Kühlung beschreibt.
-Im nächsten Schritt wird an die Spulen abwechselnd eine Stromstärke von 
-$I = \pm\SI{39}{\ampere}$ angelegt. Dies erzeugt eine Flussdichte von \SI{0,5}{\tesla}.
-Die Messung ist beendet wenn insgesamt 52 Messreihen aufgenommen
-worden sind. 
-Das bedeutet, dass für positive und negative Flussdichte jeweils 26 Messreihen zur Verfügung stehen.
+Danach erfolgt die Messung des Hintergrunds.
+Der Hintergrund setzt sich unter anderem aus dem einfallendem Umgebungslicht und 
+dem Dunkelstromausschlags (Rauschen der CCD) zusammen, welcher trotz Kühlung vorhanden ist.
+Im nächsten Schritt wird die gewünschte Temperatur über das Heizelement und durch 
+Kontrolle des Heliumflusses eingestellt. 
+Es werden abwechselnd Spektren bei positivem und negativem Magnetfeld aufgenommen. 
+Jedes Spektrum besteht aus 16 Einzelbildern mit jeweils 3 Sekunden Belichtungszeit, die aufaddiert werden.
+Die Einzelbilder werden gemacht, damit die CCD welche die Intensität erfasst nicht zum sättigen 
+gebracht wird, was zur Folge hätte das keine oder kleine Unterschiede nicht mehr messbar sind.
+Der Wechsel zwischen positiver und negativer Flussdichte wird 26 Mal wiederholt, damit 
+wird versucht Störeffekten, (z.B. Änderungen der Laserintensität) die sich erst über 
+längere Messdauer einstellen könnten, entgegenzuwirken.
 Nach jeder Messung wird die Temperatur auf die jeweils nächst zu messende Temperatur angeglichen
 und mit der nächsten Messung wird begonnen.
-Die Messdaten werden in Textdokumenten gespeichert, die die um den Hintergrund und 
-Dunkelstromaussschlag reduzierten Intensitäten beinhalten.
+Die Messdaten werden in Textdokumenten gespeichert, die die um den Hintergrund 
+reduzierten Intensitäten beinhalten.

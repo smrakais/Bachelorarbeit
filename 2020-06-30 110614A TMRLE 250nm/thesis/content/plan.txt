@@ -1,14 +1,21 @@
-Theorie
+Theoretische grundlagen
     Effekte und Zusammenhänge beschrieben die
     Fuer erklärungen der Auswertung relevant sind
-    Plasmonen
-    Exitonen
-    Zeemaneffekt
-    Polarisation
-    Kopplung
-    Spin locking
-    Fit der modified function 
 
+    Plasmonen 
+
+    große Zeemanaufspaltung (bei uns ist due ja groß)--> Exitonen
+    Polarisation
+    
+    TMRLE (EFFEKT ERKLÄRUNG)
+    mit temperturabhänig
+    (Kopplung)
+    (Spin locking)
+    (Fit der modified function) 
+
+
+Probenstruktur eigenschaften der probe
+    wie ist die probe aufgebaut erklärungen
 
 Aufbau check 
     Temperaturmessgerät check
@@ -16,7 +23,7 @@ Aufbau check
     Heizung noch einbauen check
 
 
-Durchführung check 
+experimentelle Durchführung check --> korrektur
     Fuer unterschiedliche tenperatzren
     Gemessen wie Position sensor
     Wie Probe geheizt bzw. probe gekuhlt
