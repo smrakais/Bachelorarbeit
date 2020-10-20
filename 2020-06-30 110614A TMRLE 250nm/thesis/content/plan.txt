@@ -2,7 +2,8 @@ Theoretische grundlagen
     Effekte und Zusammenhänge beschrieben die
     Fuer erklärungen der Auswertung relevant sind
 
-    Plasmonen 
+    Oberflächenplasmonen Polaritonen
+    (erklärung was die sind und wo die sind)
 
     große Zeemanaufspaltung (bei uns ist due ja groß)--> Exitonen
     Polarisation

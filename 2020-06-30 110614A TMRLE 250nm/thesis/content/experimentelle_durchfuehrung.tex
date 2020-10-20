@@ -1,12 +1,13 @@
-\chapter{Beschreibung des Versuchsaufbaus und Durchführung des Experiments}
+\chapter{Experimentelle Durchführung}
 
 \section{Beschreibung des Versuchsaufbaus}
+
 \label{sec:Beschreibung des Versuchsaufbaus}
 Der Experimentelle Aufbau besteht im wesentlichen aus drei Hauptbestandteilen.
 Dem Laser (grün) mit einer Wellenlänge von \SI{552}{\nano\meter}, der Festkörperprobe aus zusammengesetzen
 Materialien und einen Spektrometer.
 Im folgen werden die einzelnen verwendeten Bauteile in ihrem Verwendungszweck beschrieben.
-In Abbildung ~\ref{fig:aufbau} ist der schematische Versuchsaufbau dargestellt.
+In Abbildung~\ref{fig:aufbau} ist der schematische Versuchsaufbau dargestellt.
 \begin{figure}
     \centering
     \includegraphics[scale=0.75]{./Plots/setup.pdf}
@@ -24,7 +25,7 @@ verwendete Laser sowieso nur eine kleinere Wellenlänge liefert, doch um Störef
 konkret, dass Aussenden von Wellenlängen im Bereich des späteren Effekts ist zur Sicherheit ein
 Tiefpass installiert worden. 
 Nach dem Tiefpass gelangt der Laserstrahl in einen 
-nicht polarisierenden Strahlteilerwürfel (kurz BSC).\footnote{BSC (englisch) Beam-splitter-cube.}
+nicht polarisierenden Strahlteilerwürfel (kurz BSC).\footnote{BSC engl. Beam-splitter-cube.}
 Der verwendete BSC hat im Inneren eine Grenzfläche, die unter 45° zu den Seiten 
 steht und $\SI{50}{\percent}$ der Lichtintensität transmittiert und $\SI{50}{\percent}$ reflektiert.
 Das bedeutet konkret, dass 
@@ -48,7 +49,7 @@ Nachdem das Laserlicht auf die Probe gefallen ist, emittiert die Probe Photolumi
 Das emittierte PL wird von der Festkörperprobe in alle Richtungen diffus abgegeben und 
 wird von dem Mikroskopobjektiv in einem Winkelbereich von $\pm \SI{24}{\degree}$ aufgesammelt. 
 Danach läuft es auf dem selben Weg rückwerts wie zuvor das Laserlicht bis zu der Stelle des BSC.
-Am BSC wird das PL dann in rechten Winkel reflektiert (vgl. Abbildung ~\ref{fig:aufbau}) und umgelenkt sodass sie 
+Am BSC wird das PL dann in rechten Winkel reflektiert (vgl. Abbildung~\ref{fig:aufbau}) und umgelenkt sodass sie 
 auf ein $\sfrac{\lambda}{2}$-Plättchen trifft.
 Das $\sfrac{\lambda}{2}$-Plättchen wird hier nur der Vollständigkeit aufgeführt, in dem Experiment
 wird es so ausgerichtet das es keinen Effekt hat. 
@@ -75,9 +76,10 @@ im Spektrometer darzustellen.
 \footnote{Das Mikroskopobjektiv bildet die Winkelinformation in eine Fourierebene ab,
 welche durch das Teleskop real im Spektrometersicht darstellbar ist.} 
 Im Spektrometer angekommen wird das Licht durch den Monochromator nach Wellenlänge separiert und 
-anschließend durch die CCD (charge-coupled device) registriert.
+anschließend durch die CCD (engl. charge-coupled device) registriert.
 
 \section{Durchführung des Experiments}
+
 Bevor mit einer Messung begonnen werden kann muss die Probe in den Fokus des Mikroskopobjektivs 
 gebracht werden. 
 Mit einem Klappspiegel und einer zusätzlichen Linse wird eine Abbildung des 
@@ -114,3 +116,30 @@ Nach jeder Messung wird die Temperatur auf die jeweils nächst zu messende Tempe
 und mit der nächsten Messung wird begonnen.
 Die Messdaten werden in Textdokumenten gespeichert, die die um den Hintergrund 
 reduzierten Intensitäten beinhalten.
+
+\section{Beschreibung des Probenkörpers}
+
+Die verwendete Festkörperprobe ist in Abbildung~\ref{fig:probe} zu sehen.
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.5]{./Plots/probe.pdf}
+    \caption{Erkennbar sind die unterschiedlichen Schichten der Probe.
+    Die unterste Schicht, das Substrat (hier schwarz) besteht aus Galliumarsenid (GaAs).}
+    \label{fig:probe}
+\end{figure}
+\FloatBarrier
+
+Die Basis der Probe wird durch das sogenannte Substrat, welches aus Galliumarsenid (GaAs) besteht, gebildet.
+Das Substrat ist $\SI{400}{\micro\meter}$ groß und sorgt im wesentlichen für Stabilität.
+Darauf befindet sich eine Schicht Cadmium-Magnesium-Tellurid (CdMgTe), welche $\SI{4,6}{\micro\meter}$ groß ist
+und als Puffer für die nächste Schicht dient.
+Als nächstes folgt das mit Mangan (Mn) dotierte Halbleitermaterial Cadmium-Mangan-Tellurid 
+($\text{Cd}\text{Mn}_\text{0,045}\text{Te}$). 
+Hierbei handelt es sich um einen semimagnetischen Halbleiter (engl. diluted-magnetic-semicondutor, DMS).\cite{allg_paper}
+Also einen Halbleiter mit magnetischen Eigenschaften. 
+Der DMS ist wichtig um im Experiment die Photolumineszenz mit Hilfe des anliegenden
+Magnetfelds zu steuern. 
+Die DMS-Schicht ist mit $\SI{10}{\nano\meter}$ sehr dünn und ein realer Quantentopf (engl. quantumwell, QW).
+In der Deckschicht, welche ebenfalls bestehend aus CdMgTe entstehen im Experiment Oberflächenplasmonen.
+Das Goldgitter mit einer Periodizität von $\SI{250}{\nano\meter}$ wird benötigt damit das PL die Probe verlassen kann.
+%TODO falls platz wie entsteht die probe
