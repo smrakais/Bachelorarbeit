@@ -1,12 +1,11 @@
 \chapter{Theoretische Einführungen}
 
-\section{Oberflächenplasmonenpolaritonen}%~\label{sec:spps}
-
+\section{Oberflächenplasmonenpolaritonen}~\label{sec:spps}
 Oberflächenplasmonenpolaritonen (engl. surface plasmon polaritons, SPPs)
 sind kollektive Elektronen Oszillationen welche sich entlang der Grenzfläche
 zwischen Leiter und Dielektrikum ausbreiten.\cite{plasmonics}
 Sie entstehen durch Anregungen des Elektronengases in metallischen Materialien.
-Eine Anregung kann z.B. durch Laserlicht realisiert werden. 
+Eine Anregung kann z.B. durch Laserlicht geschehen.
 
 \begin{wrapfigure}{l}{5cm}
     \includegraphics[width=4.5cm]{./Plots/leiter_und_nichtleiter.pdf}
@@ -88,7 +87,6 @@ Es können beliebig viele verschiedene Ordnungen von
 reziproken Gittervektoren $G = \sfrac{2 \, \pi}{a}$ hinzuaddiert werden.
 
 \section{Große Zeemanaufspaltung}
-
 Der Zeeman-Effekt beschreibt im allgemeinen das Phänomen der Aufspaltung von 
 Energieniveaus beim anlegen eines äußeren Magnetfelds.
 Das Bändermodell in einem Festkörper ist von dieser Aufspaltung ebenfalls betroffen.
@@ -121,10 +119,52 @@ So ist beispielsweise, für negatives Magnetfeld, der ein Übergang von $S_\text
 nach $J_\text{h,x} = \sfrac{1}{2}$ linkszirkular Polarisiert .
 
 \section{Magnetisch kontrollierte direktionale Lichtemission}
-
 Die magnetisch kontrollierte direktionale Lichtemission
 beschreibt wie mit Hilfe eines angelegten äußeren Magnetfelds, die Lichtemission
-einer Halbeiterprobe gesteuert/geführt werden kann.
-Das Prinzip ist das die Umpolung des Magnetfelds eine Änderung des SPP-Impulses zurfolge hat 
+einer Halbleiterprobe gesteuert/geführt werden kann.
+Das Prinzip ist, dass die Umpolung des Magnetfelds eine Änderung des SPP-Impulses zurfolge hat 
 und dadurch die Lichtemission in eine andere Raumrichtung verläuft.
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.75]{./Plots/probe_komplett.pdf}
+    \caption{Im Experiment verwendeter Probenkörper (vgl. Abbildung~\ref{fig:probe}).
+    In den verschiedenen Schichten des Hybridhalbleiters entstehen Exzitonen und SPPs 
+    welche miteinander koppeln. Am Goldgitter der Oberfläche wird das PL (roter Pfeil)
+    emittiert.    
+    Das angelegte Magnetfeld ist homogen und verläuft entlang der x-Achse der Probe.
+    Die Richtung des Magnetfelds ist umkehrbar.}
+    \label{fig:komplett}
+\end{figure}
+\FloatBarrier
 
+Die in Abbildung~\ref{fig:komplett} zu sehende Halbeiterprobe befindet sich 
+in einem homogenen Magnetfeld entlang der x-Achse.
+Mit Hilfe eines Lasers werden im Quantentopf der Probe Exzitonen erzeugt.
+Exzitonen beschreiben Quasiteilchen welche von einem Elektron-Loch-Paar gebildet werden.
+Elektron-Loch-Paare entstehen z.B. wenn ein Laser 
+Elektronen aus dem Valenzband in das Leitungsband hebt.\cite{jens}
+
+Die entstehenden Exzitonen besitzen in der y-z-Ebene (vgl. Abbildung~\ref{fig:komplett}) eine 
+rechtsseitige zirkulare Polarisation.
+\footnote{Ob die zirkulare Polarisation recht- oder linksseitig 
+ist kann im Detail nicht so einfach gesagt werden. 
+Es geht darum, dass sich bei der Umpolung des Magnetfelds die Drehrichtung der Polarisation ändert.
+Ebenso ist die Aussage, dass Exzitonen zirkular Polarisiert sind eher ungenau, denn die Polarisation
+ist eine Eigenschaft des Lichtes bei der Rekombination zwischen Elektron und Loch.}
+Diese Exzitonen können im folgenden, an die in der Deckschicht sich bildenden 
+Plasmonen (SSP) mit der gleichen Polarisation, koppeln.
+Bei anliegendem konstanten Magnetfeld entsteht eine Temperatur abhängige Vorzugspolarisation unter 
+den entstanden Exzitonen.
+%\footnote{Dieser Effekt ist Temperaturabhängig und wird später beschrieben.}
+Sodass beispielsweise Anteilig mehr rechtszirkulare Exzitonen existieren
+als linkszirkulare. 
+Diese Differenz pflanzt sich in die Entstehung der Plasmonen (SPPs) fort.
+Das sich auf der Oberfläche der Probe befindende Goldgitter, sorgt wie in Abschnitt~\ref{sec:spps}
+beschrieben dafür, dass die SPPs in Photonen emittieren können und die Probe als PL verlassen.
+Die gebildete Vorzugspolarisation sorgt bei diesem Prozess für eine ebenfalls bevorzugte Emittierung von Photonen
+in eine Richtung. 
+Dieser Effekt wird als transversale magnetische Führung der Lichtemission 
+(engl. transverse magnetic routing of light emission, TMRLE) bezeichnet.
+Wird die Temperatur der Probe um wenige Kelvin gesteigert, ist eine Abschwächung des Effekt zu erkennen,
+denn die Erhöhung der Temperatur sorgt für eine Erhöhung der Anregungswahrscheinlichkeit für Exzitonen
+mit der jeweils andersseitigen Polarisation. Formel?
