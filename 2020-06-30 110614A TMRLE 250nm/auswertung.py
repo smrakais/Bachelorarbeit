@@ -78,7 +78,7 @@ def colormap_intensity(PathData, start, stop):          # minValue of start = 0
     plt.ylabel(r'$\lambda / \mathrm{nm}$')
     plt.title('Photolumineszenz')
     cbar = plt.colorbar()
-    cbar.set_label('Intensity')
+    cbar.set_label('Intensity / a.u.')
 
     plt.xlim(-20, 20) #changed#
     plt.ylim(750, 725) #changed#
@@ -101,7 +101,7 @@ def colormap_change_intensity(PathData, start, stop):
     mm_neg = mm_neg[:,start:stop]  
 
     theta_new = np.linspace(-23.578,23.578,mm.shape[1])
-    
+    #plt.tight_layout()
     plt.pcolormesh(theta_new,wl,rho(mm_pos,mm_neg),cmap='bwr')
     plt.clim(-0.15,0.15)        #bar limit
     plt.xlabel(r'$\theta / \mathrm{°}$')
@@ -124,6 +124,7 @@ def plot_rho_specific_wavelenght(PathData, wavelenght, start, stop):
     data = np.load(PathData)
 
     mm = data['mm']
+    print(type(mm))
     mm_pos = data['mm_pos']
     mm_neg = data['mm_neg']  
 
@@ -152,6 +153,11 @@ def plot_rho_specific_wavelenght(PathData, wavelenght, start, stop):
     plt.minorticks_on()
 
     theta_new = np.linspace(-23.578,23.578,mm.shape[1])
+    
+    ####C_0 calculation####
+    #C_0 = (mean_area_rho - np.flip(mean_area_rho))/2
+    #plt.plot(theta_new,C_0)
+    #plt.ylabel(r'$c_o$')
 
     plt.plot(theta_new,mean_area_rho,'r-')
     #plt.xlim(theta_new[0], theta_new[-1])
@@ -161,7 +167,7 @@ def plot_rho_specific_wavelenght(PathData, wavelenght, start, stop):
     plt.title('Messung bei einer Wellelänge von %i nm' % wavelenght)
 
     #save
-    plt.savefig('build/rho_at_specific_wavelength_%i_nm_' % wavelenght + PathData + '.eps' )
+    plt.savefig('build/rho_at_specific_wavelength_%i_nm_' % wavelenght + PathData + '.pdf' )
     plt.clf()
 
 #######################################################################################################
@@ -212,14 +218,14 @@ def plot_intensity_pos_neg_b_field(PathData,wavelength, start, stop):
     #plt.xlim(theta_new[0], theta_new[-1])
     plt.xlim(-20, 20) #changed#
     plt.xlabel(r'$\theta / \mathrm{°}$')
-    plt.ylabel(r'$I$')
+    plt.ylabel('Intensity / a.u.')
     plt.legend(loc='best')
 
     plt.title('Intensität bei einer Wellenlänge von %i nm.' % wavelength)
 
     #save
     #plt.show()
-    plt.savefig('build/positive_and_negative_intensity_at_specific_wavelength_%i_nm_' % wavelength + PathData + '.eps' )
+    plt.savefig('build/positive_and_negative_intensity_at_specific_wavelength_%i_nm_' % wavelength + PathData + '.pdf' )
     plt.clf()
 
 #############################################################################################
@@ -300,7 +306,6 @@ def plot_rho_diff_temp_const_wavelength(PathData,wavelength,start,stop,temps):
     plt.clf()
     return max_values
 
-
 #######################################################
 ####maximum values of rho with respect to the angle####
 #######################################################
@@ -328,6 +333,24 @@ def plot_max_values_of_rho(max_values,temps_value):#TODO fit the function
     plt.savefig('build/Maximale_Rho_bei_Temperaturabhänigkeit.eps')
     plt.clf()
 
+################################################
+####Intensity with respect to the wavelenght####
+################################################
+def max_value_intensity(PathData):
+    plt.grid()
+    #plt.minorticks_on()
+    data = np.load(PathData)
+    mm = data['mm']    
+    #mm = mm[:,179] wegen 0 zähler
+    mm = mm[:,190] # 256/2 = 178 da ist theta = 0  hab da etwas verschoben weil der Graph bei0grad net ganz speigelsymm ist 
+    plt.plot(np.linspace(688.745,860.588,1024),mm)
+    plt.xlim(725,750)
+    plt.xlabel('$\lambda / \mathrm{nm}$')
+    plt.ylabel('Intensität / a.u.')
+    plt.title('Maximum der Photolumineszent bei '+'$\lambda = 738\mathrm{nm}$')
+    plt.savefig('build/max_value_Pl.pdf')
+    plt.clf()
+
 #example
 colormap_intensity('read_data.npz',15,244)
 colormap_intensity('022818A 250nm 4K 2020-07-14.npz',15,244)
@@ -335,9 +358,9 @@ colormap_change_intensity('read_data.npz',15,244)
 colormap_change_intensity('022818A 250nm 4K 2020-07-14.npz',15,244)
 plot_rho_specific_wavelenght('read_data.npz',740,15,244)
 #plot_rho_specific_wavelenght('read_data.npz',750,15,244)
-#plot_rho_specific_wavelenght('022818A 250nm 10K 2020-07-20.npz',739,13,245)
+plot_rho_specific_wavelenght('022818A 250nm 4K 2020-07-14.npz',738,13,245) #test GaAS Linie
 #plot_rho_specific_wavelenght('read_data.npz',831,15,244)
-#plot_intensity_pos_neg_b_field('read_data.npz',740,14,255)
+plot_intensity_pos_neg_b_field('022818A 250nm 4K 2020-07-14.npz',738,14,255)
 #
 #alle Temperaturen
 Temperaturabhängigkeit = [np.load('Temperaturabhaengigkeit/022818A 250nm 4K 2020-07-14.npz'),
@@ -368,3 +391,4 @@ Temperaturabhängigkeit = [np.load('Temperaturabhaengigkeit/022818A 250nm 4K 202
                           np.load('Temperaturabhaengigkeit/022818A 250nm 45K 2020-07-27.npz')] 
 temps = ['4K','10K','25K','45K']
 plot_rho_diff_temp_const_wavelength(Temperaturabhängigkeit,740,13,245,temps) #die messung 25K_2 wegwerfen
+max_value_intensity('Temperaturabhaengigkeit/022818A 250nm 4K 2020-07-14.npz')

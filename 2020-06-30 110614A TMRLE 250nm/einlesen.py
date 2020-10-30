@@ -44,7 +44,7 @@ for importpath in importpaths:
     #positive and negative B-Field
     #filesB_neg=files[0:26]
     #filesB_pos=files[26:]
-    filesB_neg=files[0:len(files)//2] #TODO########################################CHANGED
+    filesB_neg=files[0:len(files)//2] #TODO ########################################CHANGED
     filesB_pos=files[len(files)//2:]
 
     #print(np.shape(files))
