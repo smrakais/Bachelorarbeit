@@ -156,20 +156,19 @@ Hinter dem Maximum schwächt sich die Direktionalität ab.
 Da bereits in mehreren Experimenten unabhängig dieser Arbeit bestätigt wird, dass der Graph
 der Direktionalität Antisymmetrisch ist, wird die Abweichung um $\theta = \SI{0}{\degree}$
 korrigiert.
-Dazu wird der Direktionalitätsfaktor $c_0$ eingeführt. 
+Dazu wird der Direktionalitätsfaktor $C$ eingeführt. 
 
 Der Graph von $\rho$ lässt sich mit der Gleichung 
 \begin{equation}
-    c_0= \frac{\rho(-\theta)-\rho(\theta)}{2}
-    \label{eq:c_0} 
+    C= \frac{\rho(-\theta)-\rho(\theta)}{2}
+    \label{eq:C} 
 \end{equation}
-
 um den Nullpunkt korrigieren, sodass er perfekt achsensymmetrisch ist.
 Dies ist in Abbildung~\ref{fig:dir_kor} zu sehen.
 \begin{figure}
     \centering
     \includegraphics[scale=0.7]{./Plots/rho_at_specific_wavelength_737_nm_022818A 250nm 4K 2020-07-14_korrigiert.pdf}
-    \caption{Gemessene um den Nullpunkt korrigierte Direktionalität $c_0$ im Maximum der Photolumineszenz.
+    \caption{Gemessene um den Nullpunkt korrigierte Direktionalität $C$ im Maximum der Photolumineszenz.
     Der Wert der im Experiment gemessen Direktionalität ist $\rho = \SI{11,5}{\percent}$.}
     \label{fig:dir_kor}
 \end{figure}
@@ -213,11 +212,11 @@ aller ermittelten Direktionalitäten, bei konstanter Wellenlänge, abgebildet.
 %    \begin{subfigure}{0.55\textwidth}
 %        %\centering
 %        \includegraphics[scale=0.45]{./Plots/Temperaturabhaengigkeit_rho_at_738_nm_4K5K10K10K15K20K25K35K35K45K45K_korrigiert.pdf}
-%        \caption{Darstellung der Direktionalität $c_0$ bei konstanter Wellenlänge und  unterschiedlichen Temperaturen.
+%        \caption{Darstellung der Direktionalität $C$ bei konstanter Wellenlänge und  unterschiedlichen Temperaturen.
 %         Die Wellenlänge beträgt $\lambda =\SI{738}{\nano\meter}$.}
 %        \label{fig:temp_all_nach}
 %    \end{subfigure}
-%    \caption{In der linken Abbildung ist die Direktionalität $\rho$ zu sehen, in der rechten der Direktionalitätsfaktor $c_0$.}
+%    \caption{In der linken Abbildung ist die Direktionalität $\rho$ zu sehen, in der rechten der Direktionalitätsfaktor $C$.}
 %    \label{fig:temp_verlauf}
 %\end{figure}
 %\FloatBarrier
@@ -225,7 +224,7 @@ aller ermittelten Direktionalitäten, bei konstanter Wellenlänge, abgebildet.
 \begin{figure}
     \centering
     \includegraphics[scale=0.7]{./Plots/Temperaturabhaengigkeit_rho_at_738_nm_4K5K10K10K15K20K25K35K35K45K45K_korrigiert.pdf}
-    \caption{Darstellung des Direktionalitätsfaktors $c_0$ bei konstanter Wellenlänge und  unterschiedlichen Temperaturen.
+    \caption{Darstellung des Direktionalitätsfaktors $C$ bei unterschiedlichen Temperaturen und konstanter Wellenlänge.
     Die Wellenlänge beträgt $\lambda =\SI{738}{\nano\meter}$.}
     \label{fig:temp_all_nach}
 \end{figure}
@@ -233,23 +232,100 @@ aller ermittelten Direktionalitäten, bei konstanter Wellenlänge, abgebildet.
 
 Die gelb gestrichelten Linien in Abbildung~\ref{fig:temp_all_nach} markieren die Bereiche 
 in denen die Maxima der Direktionalitäten\footnote{Im weiteren Verlauf wird
-von Direktionalität gesprochen auch wenn $c_0$ statt $\rho$ dargestellt ist.} 
-bei den unterschiedlichen Temperaturen liegen.
+von Direktionalität gesprochen auch wenn $C$ statt $\rho$ dargestellt ist.} 
+bei unterschiedlichen Temperaturen liegen.
 Der Winkelbereich in denen sich die Maxima befinden erstreckt sich von  $\theta = \pm \SI{13,58}{\degree} 
 $ bis $ \theta = \pm \SI{13,98}{\degree}$.
-%In Tabelle~\ref{tab:rc} ist ein Vergleich der Werte von $\rho$ und $c_0$ zu dargestellt.  
+%In Tabelle~\ref{tab:rc} ist ein Vergleich der Werte von $\rho$ und $C$ zu dargestellt.  
 Bei Betrachtung der Graphen mit gleicher Temperatur (z.B. $\SI{10}{\kelvin}$) 
-überlappt sich die Funktion von $c_0$ sehr gut.
-Bei unterschiedlichen Temperaturen lässt sich ein deutlicher Unterschied erkennen.
-Graphisch entsteht eine sichtbare Abflachung und Erniedrigung des Verlaufs von $c_0$.
+überlappt sich die Funktion von $C$ sehr gut.
+Bei ungleichen Temperaturen lässt sich ein deutlicher Unterschied erkennen.
+Graphisch entsteht eine sichtbare Abflachung und Erniedrigung des Verlaufs von $C$.
 Das bedeutet konkret, dass der Effekt der Direktionalität mit der Temperatur sinkt.
 Sehr deutlich ist das bei Betrachtung der beiden Randwerte 
 der Temperaturen $T = \SI{4}{\kelvin}$ und $ T = \SI{45}{\kelvin}$ zu sehen.
-Die Direktionalität fällt hier von $c_0= \SI{13.04}{\percent}$ auf $c_0 = \SI{4,77}{\percent}$ ab.
+Die Direktionalität fällt hier von $C= \SI{13.04}{\percent}$ auf $C = \SI{4,77}{\percent}$ ab.
 
-Werden die jeweiligen Maximalwerte der Direktionalität $c_0$ in Abhängigkeit
-der Temperatur gepottet entsteht der Graph in Abbildung~\ref{fig:fit}
+Werden die jeweiligen Maximalwerte der Direktionalität $C$ in Abhängigkeit
+der Temperatur gefittet entsteht der Graph in Abbildung~\ref{fig:fit}.
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.7]{./Plots/Maximale_Rho_bei_Temperaturabhänigkeit.pdf}
+    \caption{Darstellung der Maximalwerte von $C$ in Abhängigkeit der Temperatur.}
+    \label{fig:fit}
+\end{figure}
+\FloatBarrier
+
+In der Abbildung~\ref{fig:fit} ist ebenfalls erkennbar, 
+dass der Effekt mit zunehmender Temperatur abfällt.
+
+Um nun den Fit des Graphen zu erklären
+sind erweiternde theoretische Überlegungen bezogen auf Anschnitt~\ref{sec:pl} notwendig.
+Die im Abschnitt~\ref{sec:pl} verwendete Gleichung~\ref{eq:pc} gilt für den Bereich sehr kleiner zirkularen Polarisation $P_{c}\ll 1$. 
+Die Größe $\Delta_\text{h,F}(T)$ aus Gleichung~\ref{eq:pc} beschreibt die 
+Zeeman-Aufspaltung der Schwerlöcher in der Faraday Geometrie.
+Die Aufspaltung ist weiter definiert als 
+\begin{equation}
+    \Delta_\text{h,F} = xN_0\beta \bigl< S^\text{Mn}_{z} \bigr>.
+\end{equation}
+Dabei ist $x$ die Konzentration der $\text{Mn}^\text{2+}\text{- Ionen}$ in der Probe,
+$N_0\beta = -\SI{0.88}{\eV}$ die Austauschkonstante für das Valenzband und 
+$\bigl< S^\text{Mn}_{z} \bigr>$ beschreibt das thermische Mittel der Spinausrichtung
+der Mn-Atome entlang der Magnetfeldlinien des angelegten Magnetfelds.
+
+Hierbei besteht $\bigl< S^\text{Mn}_{z} \bigr>$ aus 
+\begin{align}
+    \label{eq:S}
+    \bigl< S^\text{Mn}_{z} \bigr> &= S_\text{eff} B_\text{$\frac{5}{2}$} (\xi)\text{,}\\
+    \xi &= \frac{5}{2}\frac{g_\text{Mn} \mu_\text{B} B }{T_\text{eff} k_\text{B}}\text{,}\\
+    \label{eq:S3}
+    T_\text{eff} &= T_\text{c} + T_0\text{.} 
+\end{align}
+$T_\text{eff}$ beschreibt die Summe der Temperaturen $T_0$ und $T_\text{c}$.
+Die Temperatur $T_\text{c}$
+steht für die Temperatur des Gitter und $T_0$ beschreibt ein Offset welches durch Antiferromagnetische Eigenschaften
+von Mn-Paaren entsteht. Vorhergehende Experimente liefern hier einen Wert von $T_0=\SI{2}{\kelvin}$.
+Die Funktion $B_{S}$ in Gleichung~\ref{eq:S} ist die Brillouin-Funktion 
+\begin{equation}
+    B_{S}(\xi) = \frac{2S+1}{2S}\coth\left(\frac{2S+1}{2S}\xi\right) - \frac{1}{2S}\coth(\frac{1}{2S}\xi),
+\end{equation}
+mit der Spinquantenzahl von $ S = \frac{5}{2}$~\cite{felix}.
+Die Größe $g_\text{Mn} = 2 $ ist der Landé-Faktor, $\mu_\text{B}$ das Bohrsche Magneton,
+$k_\text{B}$ die Boltzmann-Konstante  und $B=\SI{0,5}{\tesla} $ das angelegte Magnetfeld.
+
+Gleichung~\ref{eq:S} lässt sich jetzt in folgende Gleichung überführen
+\begin{align}
+    C(T)&= C_0 B_\text{$\frac{5}{2}$} (\xi)\text{,} \\
+    \xi &= \frac{5}{2}\frac{g_\text{Mn} \mu_\text{B} B }{T^*_\text{eff} k_\text{B}}\text{,} \\
+    T^*_\text{eff} &= T + T_0 + T_\text{off}\text{.}
+\end{align}
+
+Hauptaugenmerk ist die Temperaturabhängigkeit.
+Die Bestandteile von $T^*_\text{eff}$ sind $T_0$ (vgl. Gleichung~\ref{eq:S3}) 
+
+%pc nicht zugänglich p_c proportional C(T)
 
 
-maximum korrgegtur
-dann 4stuckrausgenimen bvild 
+
+
+
+
+
+%ist konstant und nur Abhängig von der im Experiment maximal
+%erreichten Flussdichte $B = \SI{0,5}{\tesla}$.
+\newpage
+Mathematisch ist der Fit durch die Funktion ist
+
+entstanden.
+Dabei beschreibt die $B_S$ Brillouin-Funktion 
+\begin{equation}
+    B_S(\xi) = \frac{2S+1}{2S}\coth\left(\frac{2S+1}{2S}\xi\right) - \frac{1}{2S}\coth(\frac{1}{2S}\xi),
+\end{equation}
+mit der Spinquantenzahl von $ S = \frac{5}{2}$~\cite{felix}.
+
+
+Die Fitparameter haben die Werte 
+\begin{align}
+    C_0 & = 4.3 ± 0.2, \\
+    T_\text{off} & = \SI{ 23 \pm 2}{\kelvin}. 
+\end{align}

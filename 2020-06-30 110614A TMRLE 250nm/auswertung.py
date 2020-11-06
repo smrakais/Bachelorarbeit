@@ -53,7 +53,7 @@ def rho_fit_func(x, T_off, C_0):
     mu_B = 9.2740100783e-24                             #% J/T
     k_B  = 1.380649e-23                                 #% J/K
     B = 0.5                                             #% T
-    T_0 = 1                                             #%K
+    T_0 = 2                                             #% K
     kappa = S*mu_B*g_Mn*B/k_B
     Xi = kappa / (x+T_0+T_off)
     
@@ -155,15 +155,15 @@ def plot_rho_specific_wavelenght(PathData, wavelenght, start, stop):
     theta_new = np.linspace(-23.578,23.578,mm.shape[1])
     
     ####C_0 calculation####
-    #C_0 = (mean_area_rho - np.flip(mean_area_rho))/2
-    #plt.plot(theta_new,C_0)
-    #plt.ylabel(r'$c_o$')
+    C_0 = (mean_area_rho - np.flip(mean_area_rho))/2
+    plt.plot(theta_new,C_0)
+    plt.ylabel(r'$C$')
 
-    plt.plot(theta_new,mean_area_rho,'r-')
+    #plt.plot(theta_new,mean_area_rho,'r-')
     ##plt.xlim(theta_new[0], theta_new[-1])
     plt.xlim(-20, 20) #changed#
     plt.xlabel(r'$\theta / \mathrm{°}$')
-    plt.ylabel(r'$\rho$')
+    #plt.ylabel(r'$\rho$')
     plt.title('Messung bei einer Wellelänge von %i nm' % wavelenght)
     #plt.title('Messung bei einer Wellelänge von %i nm (korrigiert)' % wavelenght)
 
@@ -278,7 +278,7 @@ def plot_rho_diff_temp_const_wavelength(PathData,wavelength,start,stop,temps):
         ####C_0 calculation####
         C_0 = (mean_intensity_rho - np.flip(mean_intensity_rho))/2
         plt.plot(theta_new,C_0,label = temps[enum])
-        plt.ylabel(r'$c_o$')
+        plt.ylabel(r'$C$')
 
         
         #plt.xlim(theta[0], theta[-1])
@@ -335,7 +335,7 @@ def plot_max_values_of_rho(max_values,temps_value):
     plt.minorticks_on()
     plt.xlabel(r'$T$ / K')
     #plt.ylabel(r'$\rho$')
-    plt.ylabel(r'$c_0$')
+    plt.ylabel(r'$C$')
     plt.title('Maximale Effektstärke bei unterschiedlichen Temperaturen.')
 
     ###########
@@ -380,8 +380,8 @@ colormap_intensity('022818A 250nm 4K 2020-07-14.npz',15,244)
 colormap_change_intensity('022818A 250nm 4K 2020-07-14.npz',15,244)
 #plot_rho_specific_wavelenght('read_data.npz',740,15,244)
 #plot_rho_specific_wavelenght('read_data.npz',750,15,244)
-plot_rho_specific_wavelenght('022818A 250nm 4K 2020-07-14.npz',737,13,245) #test GaAS Linie
-plot_rho_specific_wavelenght('022818A 250nm 4K 2020-07-14.npz',830,13,245) #test GaAS Linie
+plot_rho_specific_wavelenght('022818A 250nm 4K 2020-07-14.npz',737,13,245) 
+#plot_rho_specific_wavelenght('022818A 250nm 4K 2020-07-14.npz',830,13,245) #test GaAS Linie
 
 #plot_rho_specific_wavelenght('read_data.npz',831,15,244)
 plot_intensity_pos_neg_b_field('022818A 250nm 4K 2020-07-14.npz',737,14,255)
@@ -405,7 +405,7 @@ temps_value = [4,5,10,10,15,20,25,35,35,45,45]
 
 #boundries from Lars
 #temps bei aufruf bitte immer anpassen!
-plot_max_values_of_rho(plot_rho_diff_temp_const_wavelength(Temperaturabhängigkeit,738,13,245,temps),temps_value) #die messung 25K_2 wegwerfen
+plot_max_values_of_rho(plot_rho_diff_temp_const_wavelength(Temperaturabhängigkeit,737,13,245,temps),temps_value) #die messung 25K_2 wegwerfen
 
 
 #4 Temperaturen
