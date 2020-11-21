@@ -74,12 +74,12 @@ def colormap_intensity(PathData, start, stop):          # minValue of start = 0
     
     plt.pcolormesh(theta_new,wl,mm,cmap='hot')          # make the axes correct x,y,matrix
     plt.gca().invert_yaxis()                            # inverts the y axis
-    plt.xlabel(r'$\theta / \mathrm{°}$')
-    plt.ylabel(r'$\lambda / \mathrm{nm}$')
-    plt.title('Photolumineszenz')
+    plt.xlabel('Emissionswinkel '+r'$\theta / \mathrm{°}$')
+    plt.ylabel('Wellenlänge '+r'$\lambda / \mathrm{nm}$')
+    plt.title('Spektrum der Photolumineszenz')
     cbar = plt.colorbar()
     cbar.set_label('Intensität / a.u.')
-
+    
     plt.xlim(-20, 20) #changed#
     plt.ylim(750, 725) #changed#
     #plt.show()
@@ -104,12 +104,12 @@ def colormap_change_intensity(PathData, start, stop):
     #plt.tight_layout()
     plt.pcolormesh(theta_new,wl,rho(mm_pos,mm_neg),cmap='bwr')
     plt.clim(-0.15,0.15)        #bar limit
-    plt.xlabel(r'$\theta / \mathrm{°}$')
-    plt.ylabel(r'$\lambda / \mathrm{nm}$')
+    plt.xlabel('Emissionswinkel '+r'$\theta / \mathrm{°}$')
+    plt.ylabel('Wellenlänge '+r'$\lambda / \mathrm{nm}$')
     plt.title('relative Änderung der Intensität')
     plt.gca().invert_yaxis()
     cbar = plt.colorbar()
-    cbar.set_label('relative Intensität')
+    cbar.set_label('relative Änderung ' + r'$\rho / \% $')
 
     plt.xlim(-20, 20) #changed#
     plt.ylim(755,730) #changed#
@@ -157,14 +157,14 @@ def plot_rho_specific_wavelenght(PathData, wavelenght, start, stop):
     ####C_0 calculation####
     C_0 = (mean_area_rho - np.flip(mean_area_rho))/2
     plt.plot(theta_new,C_0)
-    plt.ylabel(r'$C$')
+    plt.ylabel('Direktionatität '+'$C$')
 
     #plt.plot(theta_new,mean_area_rho,'r-')
     ##plt.xlim(theta_new[0], theta_new[-1])
     plt.xlim(-20, 20) #changed#
-    plt.xlabel(r'$\theta / \mathrm{°}$')
-    #plt.ylabel(r'$\rho$')
-    plt.title('Messung bei einer Wellelänge von %i nm' % wavelenght)
+    plt.xlabel('Emissionswinkel '+r'$\theta / \mathrm{°}$')
+    #plt.ylabel('relative Änderung ' +r'$\rho$')
+    plt.title('Messung bei einer Wellenlänge von %i nm' % wavelenght)
     #plt.title('Messung bei einer Wellelänge von %i nm (korrigiert)' % wavelenght)
 
     #save
@@ -218,7 +218,7 @@ def plot_intensity_pos_neg_b_field(PathData,wavelength, start, stop):
     #format
     #plt.xlim(theta_new[0], theta_new[-1])
     plt.xlim(-20, 20) #changed#
-    plt.xlabel(r'$\theta / \mathrm{°}$')
+    plt.xlabel('Emissionswinkel '+r'$\theta / \mathrm{°}$')
     plt.ylabel('Intensität / a.u.')
     plt.legend(loc='best')
 
@@ -278,12 +278,12 @@ def plot_rho_diff_temp_const_wavelength(PathData,wavelength,start,stop,temps):
         ####C_0 calculation####
         C_0 = (mean_intensity_rho - np.flip(mean_intensity_rho))/2
         plt.plot(theta_new,C_0,label = temps[enum])
-        plt.ylabel(r'$C$')
+        plt.ylabel('Direktionalität '+r'$C$')
 
         
         #plt.xlim(theta[0], theta[-1])
         plt.xlim(-20, 20) #changed#
-        plt.xlabel(r'$\theta / \mathrm{°}$')
+        plt.xlabel('Emissionswinkel '+ r'$\theta / \mathrm{°}$')
         plt.legend(ncol=2)
         plt.title(' Messung bei einer Wellenlänge von %i nm.' % wavelength)
         
@@ -329,14 +329,14 @@ def plot_rho_diff_temp_const_wavelength(PathData,wavelength,start,stop,temps):
 #######################################################
 #temps bei aufruf bitte immer anpassen!
 def plot_max_values_of_rho(max_values,temps_value):
-    plt.plot(temps_value,max_values,'r+',label = 'Maximale Effektstärke')
+    plt.plot(temps_value,max_values,'r+',label = 'Maximale Direktionalität')
     print(temps_value)
     plt.grid()
     plt.minorticks_on()
-    plt.xlabel(r'$T$ / K')
+    plt.xlabel('Temperatur '+r'$T$ / K')
     #plt.ylabel(r'$\rho$')
-    plt.ylabel(r'$C$')
-    plt.title('Maximale Effektstärke bei unterschiedlichen Temperaturen.')
+    plt.ylabel('Direktionalität '+r'$C$ / %')
+    plt.title('Maximale Direktionalität bei unterschiedlichen Temperaturen.')
 
     ###########
     ####FIT####
@@ -357,7 +357,7 @@ def plot_max_values_of_rho(max_values,temps_value):
 ################################################
 def max_value_intensity(PathData,temps):
     plt.grid()
-    #plt.minorticks_on()
+    plt.minorticks_on()
     for enum,index in enumerate(PathData) :
         #data = np.load(PathData)
         data = np.load(index)
@@ -367,10 +367,32 @@ def max_value_intensity(PathData,temps):
         plt.plot(np.linspace(688.745,860.588,1024),mm,label = temps[enum])
         plt.legend(ncol=2)   
         plt.xlim(725,750)
-        plt.xlabel('$\lambda / \mathrm{nm}$')
+        plt.xlabel('Wellenlänge'+'$\lambda / \mathrm{nm}$')
         plt.ylabel('Intensität / a.u.')
-        plt.title('Maximum der Photolumineszent bei '+'$\lambda = 737,7\mathrm{nm}$')
-    plt.savefig('build/max_value_Pl.pdf')
+        plt.title('Maxima der Photolumineszenzen')
+    plt.savefig('build/max_value_Pl_alle.pdf')
+    plt.clf()
+
+
+def max_value_intensity_single(PathData):
+    plt.grid()
+    plt.minorticks_on()
+    
+    data = np.load(PathData)
+    mm = data['mm']    
+    mm = mm[:,179] #wegen 0 zähler
+    #mm = mm[:,190] # 256/2 = 178 da ist theta = 0  hab da etwas verschoben weil der Graph bei0grad net ganz speigelsymm ist 
+
+    plt.plot(np.linspace(688.745,860.588,1024),mm,label = '4K')
+
+    plt.legend()  
+    plt.xlim(725,750)
+    plt.xlabel('Wellenlänge'+'$\lambda / \mathrm{nm}$')
+    plt.ylabel('Intensität / a.u.')
+
+    plt.title('Maximum der Photolumineszenz')
+
+    plt.savefig('build/max_value_Pl_single.pdf')
     plt.clf()
 
 #example
@@ -405,7 +427,7 @@ temps_value = [4,5,10,10,15,20,25,35,35,45,45]
 
 #boundries from Lars
 #temps bei aufruf bitte immer anpassen!
-plot_max_values_of_rho(plot_rho_diff_temp_const_wavelength(Temperaturabhängigkeit,737,13,245,temps),temps_value) #die messung 25K_2 wegwerfen
+plot_max_values_of_rho(plot_rho_diff_temp_const_wavelength(Temperaturabhängigkeit,738,13,245,temps),temps_value) #die messung 25K_2 wegwerfen
 
 
 #4 Temperaturen
@@ -432,4 +454,6 @@ temps = ['4K','5K','10K','10K','15K','20K','25K','35K','35K','45K','45K']
 
 #max_value_intensity('Temperaturabhaengigkeit/022818A 250nm 4K 2020-07-14.npz') geht net die funktionmuss modifiziert werden
 max_value_intensity(Temperaturabhängigkeit,temps)
+#################################################################################################################### 
+max_value_intensity_single('Temperaturabhaengigkeit/022818A 250nm 4K 2020-07-14.npz')
 #################################################################################################################### 
