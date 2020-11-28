@@ -1,9 +1,9 @@
 \chapter{Auswertung der Messdaten und Diskussion}
 Im folgenden Kaptitel werden die im Experiment aufgenommenen Daten ausgewertet. 
-Nach der Diskussion der Photolumineszenz und der 
-Direktionalität, wird speziell auf die Temperaturabhängigkeit der 
+Nach der Diskussion der Photolumineszenzspektren und der 
+Direktionalität wird speziell auf die Temperaturabhängigkeit der 
 Direktionalität eingegangen.
-Dies wird gemacht um besser zu verstehen welche Rolle eine Temperaturänderung 
+Dies wird gemacht, um besser zu verstehen welche Rolle eine Temperaturänderung 
 bei der direktionalen Lichtemission spielt.
 
 \section{Photolumineszenz und Direktionalität bei konstanter Temperatur}~\label{sec:PL_u_Direktionalitaet}
@@ -11,48 +11,49 @@ Die gemessene Photolumineszenz (PL) der Probe (vgl. Abschnitt~\ref{sec:probe})
 ist in Abbildung~\ref{fig:photo} als farblich dargestelle Intensitätsverteilung zu sehen. 
 Die Temperatur (am Temperatursensor) hat zum Zeitpunkt der Messung $T = \SI{4}{\kelvin}$ betragen.
 Der Graph der PL ist durch die Summation aller Einzelmessungen 
-bei positiven und negativen Magnetfeld entstanden. 
+bei positivem und negativem Magnetfeld entstanden. 
 
-Die Winkelachse in Abbildung~\ref{fig:photo} beschreibt den Winkelbereich unter welchen das 
+Die x-Achse in Abbildung~\ref{fig:photo} beschreibt den Winkelbereich unter welchem das 
 emittierte Licht aus der Probe ausgetreten ist.
-Die Wellenlängenachse charakterisiert die Energie die das emittierte Licht besitzt. 
-Während der Durchführung des Experiments war das emittierte Licht als schwaches rotes Leuchten zu 
+Die y-Achse charakterisiert die Wellenlänge die das emittierte Licht besitzt. 
+Während der Durchführung des Experiments war das emittierte Licht, als schwaches rotes Leuchten zu 
 erkennen.
 Die farblich dargestelle Intensität hat keine weiter spezifizierte physikalische Einheit, 
 da es nur um Änderungen unter den Intensitäten geht. TODO wie normieren?
-Der Winkelbereich wird auf $\theta = \pm \SI{20}{\degree}$ 
-eingeschränkt um verzerrende Randeffekte/Artefakte zu vermeiden. 
-Tatsächlich auflösbare wäre der Winkelbereich, aufgrund der numerischen Apertur, 
-bei $\theta = \pm \SI{24}{\degree}$ 
+Der Winkelbereich wird bei den Darstellungen auf $\theta = \pm \SI{20}{\degree}$ 
+eingeschränkt, um verzerrende Randeffekte oder Artefakte zu vermeiden. 
+Tatsächlich messbare wäre der Winkelbereich, aufgrund der numerischen Apertur, 
+bis $\theta = \pm \SI{24}{\degree}$ 
 (vgl. Abschnitt~\ref{sec:Beschreibung des Versuchsaufbaus}).
+Wie in Abbildung~\ref{fig:photo} zu erkennen ist, 
+liegt das Maximum der PL Emission bei $\lambda = \SI{737}{\nano\meter}$.
+Das entspricht einer Photonenenergie von $\SI{1,68}{\eV}$.
 
-Wie in Abbildung~\ref{fig:photo} zu erkennen ist, ist die PL zentriert bei 
-$\lambda = \SI{737}{\nano\meter}$ dargestellt. 
-Das hat den Grund das dort genau das Maximum der PL liegt.
-Die Energie des emittierten Lichts im Maximum beträgt $\SI{1,68}{\eV}$.
-Eine Veranschaulichung des Maximums ist in Abbildung~\ref{fig:max} zu sehen.
+Abbildung~\ref{fig:max} zeigt das gleiche Spektrum der PL, jedoch gemittelt über den gemessenen Winkelbereich, 
+wodurch die Intensitätsverteilung leichter zu erkennen ist. 
 Die Abnahme der Intensität an den Rändern der PL also unter ca. $\SI{735}{\nano\meter}$ und über ca. 
 $\SI{740}{\nano\meter}$ bedeuten, 
-dass die Probe ab diesem Wellenlängen fast bis kein Licht mehr emittiert.
+dass die Probe ab diesen Wellenlängen fast bis kein Licht mehr emittiert.
+\newpage %lol XD
 \begin{figure}
     \centering
     \includegraphics[scale=0.7]{./Plots/colormap__intensity_photolumineszenz_022818A 250nm 4K 2020-07-14.png}
     \caption{Darstellung des Intensitätsspektrum der Photolumineszenz.
     Die Temperatur  am Temperatursensor beträgt zum Zeitpunkt der Messung $\SI{4}{\kelvin}$. 
-    Das Maximus der PL ist bei $\SI{737}{\nano\meter}$ mit einer Halbwertsbreite von ca. $\SI{5}{\nano\meter}$. 
-    Je heller die Bereiche desto mehr Intensität ist an der Stelle gemessen worden.}
+    Das Maximum der PL ist bei $\SI{737}{\nano\meter}$ mit einer Halbwertsbreite von ca. $\SI{5}{\nano\meter}$. 
+    Je heller die Bereiche, desto mehr Intensität ist an der Stelle gemessen worden.}
     \label{fig:photo}
 \end{figure}
 \FloatBarrier
 
-In Abbildung~\ref{fig:i_pn} sind die unterschiedlichen Intensitätsverläufe bei positiven und negativen
+In Abbildung~\ref{fig:i_pn} sind die unterschiedlichen Intensitätsverläufe bei positivem und negativem
 Magnetfeld im Maximum der PL und in Abhängigkeit des Emissionswinkels zu sehen.
 Für die Erstellung des Graphen wurde bei der Wellenlänge $\lambda = \SI{737}{\nano\meter}$ 
-über insgesamt 40 Pixel der CCD gemittelt.
-Das entspricht bei Umrechnung in eine Wellenlängenänderung einen Wert von $\pm \SI{7}{\nano\meter}$.
+über insgesamt 40 Pixel der Wellenlängenachse der CCD gemittelt.
+Das entspricht einem Wellenlängenbereich von $\pm \SI{7}{\nano\meter}$ um das Maximum. 
 
-Bei Betrachtung positiver Winkel lässt sich erkennen, das dort die Probe mehr Licht bei negativen
-Magnetfeld emittiert als bei positiven.
+Bei Betrachtung positiver Winkel lässt sich erkennen, dass dort die Probe mehr Licht bei negativem
+Magnetfeld emittiert als bei positivem.
 Eine Umkehrung des Intensitätsverlaufs ist bei Betrachtung negativer Winkel zu sehen.
 Dieser Umstand deckt sich mit der vorrangestellten Theorie, da nun zirkular polarisierte Exzitonen mit dem 
 umgekehrten Drehsinn entstehen und an Plasmonen mit entgegengesetzter Ausbreitungs- und Emissionsrichtung koppeln
@@ -212,7 +213,7 @@ Der Verlauf der Direktionalität ist in Abbildung~\ref{fig:dir_kor} zu sehen.
 \FloatBarrier
 
 
-\section{Temperatur Abhängigkeit der Direktionalität}
+\section{Temperatur Abhängigkeit der Direktionalität}~\label{sec:Temperatur Abhaengigkeit der Direktionalitaet}
 Im folgenden Abschnitt der Arbeit wird die Temperaturabhängigkeit der im Experiment
 beobachteten Direktionalität $C$ diskutiert und wesentliche Aspekte erläutert.
 
@@ -221,18 +222,18 @@ Die kleinste eingestellte Temperatur ist dabei $T =\SI{4}{\kelvin}$ gewesen, die
 $T =\SI{45}{\kelvin}$.
 Es sind insgesamt 11 temperaturabhängige Messungen entstanden.
 
-Die Wellenlänge bei der alle nachfolgenden Graphen betrachtet werden ist $\lambda =\SI{738}{\nano\meter}$,
+Die Wellenlänge bei der alle nachfolgenden Graphen betrachtet werden ist\\ $\lambda =\SI{738}{\nano\meter}$,
 da sich das über alle Temperaturen gemittelte Maximum der Photolumineszenz bei
 $\lambda =\SI{737,7}{\nano\meter}$ befindet.
-Im Abbildung~\ref{fig:int_temp} sind die Intensitätsmaxima bei den unterschiedlichen Temperaturen zu sehen.
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.7]{./Plots/max_value_Pl_alle.pdf}
-    \caption{Darstellung der Intensitätsmaxima bei unterschiedlichen Temperaturen.
-    Das gemittelte Maxima ist bei $\lambda =\SI{737,7}{\nano\meter}$.}
-    \label{fig:int_temp}
-\end{figure}
-\FloatBarrier 
+%Im Abbildung~\ref{fig:int_temp} sind die Intensitätsmaxima bei den unterschiedlichen Temperaturen zu sehen.
+%\begin{figure}
+%    \centering
+%    \includegraphics[scale=0.7]{./Plots/max_value_Pl_alle.pdf}
+%    \caption{Darstellung der Intensitätsmaxima bei unterschiedlichen Temperaturen.
+%    Das gemittelte Maxima ist bei $\lambda =\SI{737,7}{\nano\meter}$.}
+%    \label{fig:int_temp}
+%\end{figure}
+%\FloatBarrier 
 
 In Abbildung~\ref{fig:temp_all_nach} sind winkelabhängigen Direktionalitäten, für die untersuchten Temperaturen,
 bei konstanter Wellenlänge, abgebildet.
@@ -261,7 +262,7 @@ bei konstanter Wellenlänge, abgebildet.
     \centering
     \includegraphics[scale=0.7]{./Plots/Temperaturabhaengigkeit_rho_at_738_nm_4K5K10K10K15K20K25K35K35K45K45K_korrigiert.pdf}
     \caption{Darstellung des Direktionalitätsfaktors $C$ bei unterschiedlichen Temperaturen und konstanter Wellenlänge.
-    Die Wellenlänge beträgt $\lambda =\SI{738}{\nano\meter}$.}
+    Die ausgewählte Wellenlänge beträgt $\lambda =\SI{738}{\nano\meter}$.}
     \label{fig:temp_all_nach}
 \end{figure}
 \FloatBarrier
@@ -283,6 +284,11 @@ Die Direktionalität fällt hier von $C= \SI{13}{\percent}$ auf $C = \SI{4,8}{\p
 
 Werden die jeweiligen Maximalwerte der Direktionalität $C$ in Abhängigkeit
 der Temperatur dargestellt entsteht der Graph in Abbildung~\ref{fig:fit}.
+Alleine Anhand des Graphen, lässt sich eine Temperaturabhängigkeit der Direktionalität
+feststellen.
+Mit steigender Temperatur sinkt die Direktionalität.
+Der Zusammenhang der zwischen der Direktionalität und der Temperatur besteht lässt sich 
+quantifizieren.
 \begin{figure}
     \centering
     \includegraphics[scale=0.7]{./Plots/Maximale_Rho_bei_Temperaturabhänigkeit.pdf}
@@ -292,14 +298,14 @@ der Temperatur dargestellt entsteht der Graph in Abbildung~\ref{fig:fit}.
 \end{figure}
 \FloatBarrier
 
-Um den ebenfalls dargestellten Fit des Graphen zu erklären
+Um den dargestellten Fit des Graphen zu erklären
 sind erweiternde theoretische Erläuterungen bezogen auf Anschnitt~\ref{sec:pl} notwendig.
 Die im Abschnitt~\ref{sec:pl} verwendete Gleichung 
 \begin{align*}
     P_c \approx \frac{2}{3} \frac{\Delta_\text{h,F}(T)}{\Delta_\text{lh}} \propto B
 \end{align*}
 gilt für den Bereich kleiner zirkularen Polarisation $P_{c}\ll 1$. 
-Die Größe $\Delta_\text{h,F}(T)$ aus Gleichung~\ref{eq:pc} beschreibt die 
+Die Größe $\Delta_\text{h,F}(T)$ beschreibt die 
 Zeeman-Aufspaltung der Schwerlöcher in der Faraday Geometrie.
 Die Aufspaltung ist weiter definiert als 
 \begin{equation}
@@ -328,42 +334,46 @@ Die Funktion $B_{S}$ in Gleichung~\ref{eq:S} ist die Brillouin-Funktion
 \end{equation}
 mit der Spinquantenzahl von $ S = \frac{5}{2}$~\cite{felix}.
 Die Größe $g_\text{Mn} = 2 $ ist der Landé-Faktor, $\mu_\text{B}$ das Bohrsche Magneton,
-$k_\text{B}$ die Boltzmann-Konstante, $S_\text{eff}$ den effektiven Spin und $B=\SI{0,5}{\tesla} $ das angelegte Magnetfeld.
+$k_\text{B}$ die Boltzmann-Konstante, $S_\text{eff}$ der effektive Spin und $B=\SI{0,5}{\tesla} $ das angelegte Magnetfeld.
 
-Gleichung~\ref{eq:S} lässt sich jetzt in folgende Gleichung überführen
+Gleichung~\ref{eq:pc} lässt sich jetzt in folgende Gleichung überführen
 \begin{align}
-    C(T)&= C_0 B_\text{$\frac{5}{2}$} (\xi)\text{,} \\
-    \xi &= \frac{5}{2}\frac{g_\text{Mn} \mu_\text{B} B }{T^*_\text{eff} k_\text{B}}\text{,} \\
+    C(T)&= C_0 B_\text{$\frac{5}{2}$} \left( \frac{5}{2}\frac{g_\text{Mn} \mu_\text{B} B }{T^*_\text{eff} k_\text{B}}\right)\text{,} \\
     T^*_\text{eff} &= T + T_0 + T_\text{off}\text{.}
+    \label{eq:C}
 \end{align}
-Hierbei ist $C(T)$ jetzt auch die Funktion die für den Fit in Abbildung~\ref{fig:fit} benutzt wird.
+Hierbei ist $C(T)$ die Funktion die für den Fit in Abbildung~\ref{fig:fit} benutzt wird.
 Es gilt folgende Proportionalität
 \begin{equation}
-    P_{c} \propto \bigl< S^\text{Mn}_{z} \bigr> \propto C(T)
+    P_{c} \propto C(T). %\propto \bigl< S^\text{Mn}_{z} \bigr> 
 \end{equation}
 Die Proportionalität trifft also eine Aussage welchen Einfluss der Grad der zirkularen Polarisation $P_{c}$
 auf die Direktionalität $C(T)$ hat. 
 Je größer $P_{c}$ desto größer wird die messbare Direktionalität sein. 
-Hauptaugenmerk ist die Temperaturabhängigkeit von $C(T)$, diese beeinflusst $P_{c}$.
-Diese besteht im einzelnen aus 
+Das Hauptaugenmerk im Experiment ist die Temperaturabhängigkeit von $C(T)$.
+Die Temperatur beeinflusst den Grad der zirkularen Polarisation $P_c$ und das hat 
+Auswirkungen auf die im Experiment ermittelbare Größe der Direktionalität $C(T)$. 
+Die Temperaturabhängig von $C(T)$ besteht aus
 einer modifizierten effektiven Temperatur $T^*_\text{eff}$, die aus der Summe von der gemessen Temperatur $T$, dem 
 Offset $T_0$ durch die Mn-Paare (siehe oben)  und dem Offset $T_\text{off}$ welches
 die Temperaturdifferenz zwischen der Temperatur des Sensors und der im Experiment gemessenen entspricht. 
 Die Differenz kommt dadurch zustande, dass sich die Probe nicht in einen Bad aus flüssigem Helium befindet
 und der Temperatursensor nicht direkt auf der Probe angebracht ist, sondern etwas weiter entfernt. 
-Die Fitparameter sind $C_0$ und $T_\text{off}$ liefern Auswertung die Werte 
+
+Die Fitparameter der Gleichung~\ref{eq:C} sind $C_0$ und $T_\text{off}$.
+Diese ergeben bei der Auswertung die Werte 
 \begin{align}
     C_0 & = 4.3 ± 0.2, \\
-    T_\text{off} & = \SI{ 23 \pm 2}{\kelvin}. 
+    T_\text{off} & = \SI{ 23 \pm 2}{\kelvin}.
 \end{align}
-Das Temperatur Offset hat mit $T_\text{off} = \SI{ 23 \pm 2}{\kelvin}$ einen sehr hohen Wert
+
+Der Temperatur Offset hat mit $T_\text{off} = \SI{ 23 \pm 2}{\kelvin}$ einen sehr hohen Wert
 im Vergleich zu der gemessenen Temperaturen $T$.
 Dieser Wert kann durch die Energiedichte des verwendeten Lasers von $\SI{400}{\watt\per\centi\meter^{-2}}$
 erklärt werden.
-Der Lasers verursacht im QW an mehreren Stellen kleine lokale Temperaturerhöhungen welche nicht 
+Der Lasers verursacht lokale Temperaturerhöhungen welche nicht 
 von Temperatursensor erfasst werden können.
-Effektiv ist aber auch am Graph zu erkennen, dass eine Temperaturabhängig der Direktionalität
-vorhanden ist.
-Die Direktionalität sinkt mit steigender Temperatur.
-Anschaulich ist das auf die erschwerte Spinausrichtung der Mn-Atome im Magnetfeld zurückzuführen.
-
+%Effektiv ist aber auch am Graph zu erkennen, dass eine Temperaturabhängig der Direktionalität
+%vorhanden ist.
+%Die Direktionalität sinkt mit steigender Temperatur.
+%Anschaulich ist das auf die erschwerte Spinausrichtung der Mn-Atome im Magnetfeld zurückzuführen.
