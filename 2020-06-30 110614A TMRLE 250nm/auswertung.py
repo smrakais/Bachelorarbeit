@@ -340,10 +340,10 @@ def plot_max_values_of_rho(max_values,temps_value):
     print(temps_value)
     plt.grid()
     plt.minorticks_on()
-    plt.xlabel('Temperatur '+r'$T$ / K',fontsize=15)
+    plt.xlabel('Temperatur '+r'$T$ / K')#,fontsize=15)
     #plt.ylabel(r'$\rho$')
-    plt.ylabel('Direktionalität '+r'$C$',fontsize=15)
-    plt.title('Maximale Direktionalität bei verschiedenen Temperaturen.',fontsize=15)
+    plt.ylabel('Direktionalität '+r'$C$')#,fontsize=15)
+    plt.title('Maximale Direktionalität bei verschiedenen Temperaturen.')#,fontsize=15)
 
     ###########
     ####FIT####
