@@ -74,16 +74,18 @@ def colormap_intensity(PathData, start, stop):          # minValue of start = 0
     
     plt.pcolormesh(theta_new,wl,mm,cmap='hot')          # make the axes correct x,y,matrix
     plt.gca().invert_yaxis()                            # inverts the y axis
-    plt.xlabel('Emissionswinkel '+r'$\theta / \mathrm{°}$',fontsize=15)
-    plt.ylabel('Wellenlänge '+r'$\lambda / \mathrm{nm}$',fontsize=15)
-    plt.title('Spektrum der Photolumineszenz',fontsize=15)
+    plt.xlabel('Emissionswinkel '+r'$\theta / \mathrm{°}$')#,fontsize=15)
+    plt.ylabel('Wellenlänge '+r'$\lambda / \mathrm{nm}$')#,fontsize=15)
+    plt.title('Spektrum der Photolumineszenz.')#,fontsize=15)
     cbar = plt.colorbar()
-    cbar.set_label('Intensität / a.u.',fontsize=15)
+    cbar.set_label('Intensität / a.u.')#,fontsize=15)
     
     plt.xlim(-20, 20) #changed#
     plt.ylim(750, 725) #changed#
     #plt.show()
     plt.savefig('build/colormap__intensity_photolumineszenz_' + PathData + '.png') # colormaps as png because eps takes to long
+    #plt.savefig('build/colormap__intensity_photolumineszenz_' + PathData + '.pdf') # colormaps as png because eps takes to long
+
     plt.clf()
 
 ##############################################
@@ -106,14 +108,16 @@ def colormap_change_intensity(PathData, start, stop):
     plt.clim(-0.15,0.15)        #bar limit
     plt.xlabel('Emissionswinkel '+r'$\theta / \mathrm{°}$',fontsize=15)
     plt.ylabel('Wellenlänge '+r'$\lambda / \mathrm{nm}$',fontsize=15)
-    plt.title('relative Änderung der Intensität',fontsize=15)
+    plt.title('relative Änderung der Intensität.',fontsize=15)
     plt.gca().invert_yaxis()
     cbar = plt.colorbar()
-    cbar.set_label('relative Änderung ' + r'$\rho / \% $',fontsize=15)
+    cbar.set_label('relative Änderung ' + r'$\rho$',fontsize=15)
 
     plt.xlim(-20, 20) #changed#
     plt.ylim(755,730) #changed#
     plt.savefig('build/colormap_rel_change_intensity_'  + PathData + '.png') # colormaps as png because eps takes to long
+    #plt.savefig('build/colormap_rel_change_intensity_'  + PathData + '.pdf') 
+
     plt.clf()
 
 ####################################################################
@@ -157,15 +161,18 @@ def plot_rho_specific_wavelenght(PathData, wavelenght, start, stop):
     ####C_0 calculation####
     C_0 = (mean_area_rho - np.flip(mean_area_rho))/2
     plt.plot(theta_new,C_0)
-    plt.ylabel('Direktionatität '+'$C$',fontsize=15)
-
-    #plt.plot(theta_new,mean_area_rho,'r-')
-    ##plt.xlim(theta_new[0], theta_new[-1])
-    plt.xlim(-20, 20) #changed#
+    plt.ylabel('Direktionalität '+'$C$',fontsize=15)
     plt.xlabel('Emissionswinkel '+r'$\theta / \mathrm{°}$',fontsize=15)
-    #plt.ylabel('relative Änderung ' +r'$\rho$')
-    plt.title('Messung bei einer Wellenlänge von %i nm' % wavelenght,fontsize=15)
-    #plt.title('Messung bei einer Wellelänge von %i nm (korrigiert)' % wavelenght)
+    plt.title('Direktionalität bei einer Wellenlänge von %i nm.' % wavelenght,fontsize=15)
+
+    #### rho #####
+    #plt.plot(theta_new,mean_area_rho,'r-')
+    #plt.ylabel('relative Änderung ' +r'$\rho$',fontsize=15)
+    #plt.xlabel('Emissionswinkel '+r'$\theta / \mathrm{°}$',fontsize=15)
+    #plt.title('Winkelabhängigkeit bei einer Wellenlänge von %i nm.' % wavelenght,fontsize=15)
+
+    plt.xlim(-20, 20) #changed#
+    ##plt.xlim(theta_new[0], theta_new[-1])
 
     #save
     plt.savefig('build/rho_at_specific_wavelength_%i_nm_' % wavelenght + PathData + '.pdf' )
@@ -278,14 +285,14 @@ def plot_rho_diff_temp_const_wavelength(PathData,wavelength,start,stop,temps):
         ####C_0 calculation####
         C_0 = (mean_intensity_rho - np.flip(mean_intensity_rho))/2
         plt.plot(theta_new,C_0,label = temps[enum])
-        plt.ylabel('Direktionalität '+r'$C$',fontsize=15)
+        plt.ylabel('Direktionalität '+r'$C$')#,fontsize=15)
 
         
         #plt.xlim(theta[0], theta[-1])
         plt.xlim(-20, 20) #changed#
-        plt.xlabel('Emissionswinkel '+ r'$\theta / \mathrm{°}$',fontsize=15)
+        plt.xlabel('Emissionswinkel '+ r'$\theta / \mathrm{°}$')#,fontsize=15)
         plt.legend(ncol=2)
-        plt.title(' Messung bei einer Wellenlänge von %i nm.' % wavelength,fontsize=15)
+        plt.title(' Direktionalität bei einer Wellenlänge von %i nm.' % wavelength)#,fontsize=15)
         
         ####find max value of rho with respect to the angle theta####        
         #print(np.argmax(mean_intensity_rho))       #   Index stelle wo max wert in array ist (rho)
