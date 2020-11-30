@@ -22,7 +22,7 @@ Die farblich dargestelle Intensität hat keine weiter spezifizierte physikalisch
 da es nur um Änderungen unter den Intensitäten geht.
 Der Winkelbereich wird bei den Darstellungen auf $\theta = \pm \SI{20}{\degree}$ 
 eingeschränkt, um verzerrende Randeffekte oder Artefakte zu vermeiden. 
-Tatsächlich messbare wäre der Winkelbereich, aufgrund der numerischen Apertur, 
+Tatsächlich messbar wäre der Winkelbereich, aufgrund der numerischen Apertur, 
 bis $\theta = \pm \SI{24}{\degree}$ 
 (vgl. Abschnitt~\ref{sec:Beschreibung des Versuchsaufbaus}).
 Wie in Abbildung~\ref{fig:photo} zu erkennen ist, 
@@ -37,7 +37,7 @@ dass die Probe ab diesen Wellenlängen fast bis kein Licht mehr emittiert.
 \newpage %lol XD
 \begin{figure}
     \centering
-    \includegraphics[scale=0.7]{./Plots/colormap__intensity_photolumineszenz_022818A 250nm 4K 2020-07-14.pdf}
+    \includegraphics[scale=0.7]{./Plots/colormap__intensity_photolumineszenz_022818A 250nm 4K 2020-07-14.png}
     \caption{Darstellung des Intensitätsspektrum der Photolumineszenz.
     Die Temperatur  am Temperatursensor beträgt zum Zeitpunkt der Messung $\SI{4}{\kelvin}$. 
     Das Maximum der PL ist bei $\SI{737}{\nano\meter}$ mit einer Halbwertsbreite von ca. $\SI{5}{\nano\meter}$. 
@@ -116,15 +116,16 @@ Für beide Graphen wird ein Winkelbereich von $\pm \SI{20}{\degree}$ verwendet.
     %\centering
     \begin{subfigure}{0.50\textwidth}
         %\centering
-        %\includegraphics[scale=0.45]{./Plots/colormap_rel_change_intensity_022818A 250nm 4K 2020-07-14_komplett.png}
-        \includegraphics[scale=0.45]{./Plots/colormap_rel_change_intensity_022818A 250nm 4K 2020-07-14_komplett.pdf}
+        \includegraphics[scale=0.45]{./Plots/colormap_rel_change_intensity_022818A 250nm 4K 2020-07-14_komplett.png}
+        %\includegraphics[scale=0.45]{./Plots/colormap_rel_change_intensity_022818A 250nm 4K 2020-07-14_komplett.pdf}
         \caption{}
         \label{fig:rel_komplett}
     \end{subfigure}
     \begin{subfigure}{0.50\textwidth}
         %\centering
-        %\includegraphics[scale=0.45]{./Plots/colormap_rel_change_intensity_022818A 250nm 4K 2020-07-14.png}
-        \includegraphics[scale=0.45]{./Plots/colormap_rel_change_intensity_022818A 250nm 4K 2020-07-14.pdf}
+        \includegraphics[scale=0.45]{./Plots/colormap_rel_change_intensity_022818A 250nm 4K 2020-07-14.png}
+        %\includegraphics[scale=0.45]{./Plots/colormap_rel_change_intensity_022818A 250nm 4K 2020-07-14.eps}
+        %\includegraphics[scale=0.45]{./Plots/colormap_rel_change_intensity_022818A 250nm 4K 2020-07-14.pdf}
         \caption{}
         \label{fig:rel}
     \end{subfigure}
@@ -409,12 +410,13 @@ Diese ergeben bei der Auswertung die Werte
 Der Temperatur Offset hat mit $T_\text{off} = \SI{ 20 \pm 2}{\kelvin}$ einen sehr hohen Wert
 im Vergleich zu der gemessenen Temperaturen $T$.
 
-Der hohe Offset kommt zum einen dadurch zustande, dass sich die Probe nicht in einen Bad aus flüssigem Helium befindet
-und der Temperatursensor nicht direkt auf der Probe angebracht ist, sondern etwas weiter entfernt. 
+Der hohe Offset kommt zum einen dadurch zustande, dass sich die Probe nicht in
+einen Bad aus flüssigem Helium befindet und der Temperatursensor nicht direkt
+auf der Probe angebracht ist, sondern etwas weiter entfernt. 
 Zum anderen, kann dieser Wert durch die Energiedichte des verwendeten Lasers von $\SI{400}{\watt\per\centi\meter^{-2}}$
 erklärt werden.
-Der verwendete Lasers verursacht lokale Temperaturerhöhungen, welche nicht 
-von Temperatursensor erfasst werden können.
+Der verwendete Laser verursacht lokale Temperaturerhöhungen, welche nicht 
+von dem Temperatursensor erfasst werden kann.
 
 Durch den Verlauf des Fits in Abbildung~\ref{fig:fit} und unter der Berücksichtigung von den
 vorrangestellten erweiternden theoretischen Erläuterungen wird nun klar, dass
@@ -422,6 +424,6 @@ sich die Temperaturabhängigkeit von $C(T)$ mit Hilfe von Gleichung~\ref{eq:C} i
 gemessen Temperaturbereich gut approximieren lässt.
 Um eine Verbesserung der Approximation zu erreichen, müssten weitere Temperaturmessungen 
 durchgeführt werden. 
-Wird der Fit und die Lage der Punkte der Direktionalität in Abbildung~\ref{fig:fit} betrachtet so
+Wird der Fit und die Lage der Punkte der Direktionalität in Abbildung~\ref{fig:fit} betrachtet, so
 lässt sich erahnen, dass sich wohl ein genauerer Fit mit mehr Temperaturmessungen erstellen ließe,
 da die Messwerte abwechselnd um den Fit pendeln.

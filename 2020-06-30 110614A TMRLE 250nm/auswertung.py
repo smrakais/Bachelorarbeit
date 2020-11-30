@@ -83,7 +83,7 @@ def colormap_intensity(PathData, start, stop):          # minValue of start = 0
     plt.xlim(-20, 20) #changed#
     plt.ylim(750, 725) #changed#
     #plt.show()
-    plt.savefig('build/colormap__intensity_photolumineszenz_' + PathData + '.png') # colormaps as png because eps takes to long
+    plt.savefig('build/colormap__intensity_photolumineszenz_' + PathData + '.png',dpi=1200) # colormaps as png because eps takes to long
     #plt.savefig('build/colormap__intensity_photolumineszenz_' + PathData + '.pdf') # colormaps as png because eps takes to long
 
     plt.clf()
@@ -115,7 +115,7 @@ def colormap_change_intensity(PathData, start, stop):
 
     plt.xlim(-20, 20) #changed#
     plt.ylim(755,730) #changed#
-    plt.savefig('build/colormap_rel_change_intensity_'  + PathData + '.png') # colormaps as png because eps takes to long
+    plt.savefig('build/colormap_rel_change_intensity_'  + PathData + '.png',dpi=1200) # colormaps as png because eps takes to long
     #plt.savefig('build/colormap_rel_change_intensity_'  + PathData + '.pdf') 
 
     plt.clf()
